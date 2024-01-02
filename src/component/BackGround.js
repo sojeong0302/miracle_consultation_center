@@ -1,4 +1,4 @@
-import BackGroundImg from "../img/BackGroundImg.png";
+import BackGroundImg from "../img/BackGroundImg.jpg";
 import "./BackGround.css";
 
 const BackGround = () => {

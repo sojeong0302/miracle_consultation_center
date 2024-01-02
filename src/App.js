@@ -1,10 +1,10 @@
 import "./App.css";
-import NoticeModal from "./component/NoticeModal.js";
+import Home from "./page/Home.js";
 
 function App() {
   return (
     <div className="App">
-      <NoticeModal />
+      <Home />
     </div>
   );
 }

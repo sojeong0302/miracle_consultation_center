@@ -3,7 +3,7 @@ import "./Button.css";
 const Button = () => {
   return (
     <div>
-      <Button />
+      <button />
     </div>
   );
 };

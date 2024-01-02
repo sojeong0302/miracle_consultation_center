@@ -1,70 +1,65 @@
-# Getting Started with Create React App
+# 기적의 상담소
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Alt text](<home-5889366_1920 7 (3).png>)
 
-## Available Scripts
+</br>
 
-In the project directory, you can run:
+## Introduction
 
-### `npm start`
+소설 '나미야 잡화점의 기적'을 읽고 상담 웹 서비스를 구현하고자 함
+</br>
+기적의 상담소는 익명으로 상담을 요청할 수 있으며 접근성을 위하여 회원가입 기능을 없앴음
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- ### Home
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+  - 맨 처음 보여지는 페이지
 
-### `npm test`
+  - 상담하기 버튼, 답변보기 버튼, 관리자 버튼
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+  - 상담하기 -> Write 페이지로 이동
 
-### `npm run build`
+  - 답변보기 -> Answer 페이지로 이동
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+  - 관리자 버튼 -> WriteList 페이지로 이동
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- ### Write
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+  - 상담을 제출하는 페이지
 
-### `npm run eject`
+  - 취소 버튼과 보내기 버튼
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+  - 취소 -> Home 페이지로 이동
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+  - 보내기 -> 상담 제출
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- ### Answer
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+  - 상담에 대한 답변을 볼 수 있는 페이지
 
-## Learn More
+- ### WriteList (관리자 페이지)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+  - 상담 내역을 볼 수 있는 페이지
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+</br>
 
-### Code Splitting
+## Conventional Commits
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- feat (feature): 새로운 기능 추가
 
-### Analyzing the Bundle Size
+- fix (bug fix): 버그 수정
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- docs (documentation): 문서 추가 또는 수정
 
-### Making a Progressive Web App
+- style: 코드 스타일 관련 변경
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- refactor: 코드 리팩토링, 기능 변경 없이 코드 구조 수정
 
-### Advanced Configuration
+- test: 테스트 관련 코드 추가 또는 수정
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- chore (maintain): 유지보수를 위한 작업, 패키지 업데이트, 빌드 설정 변경 등
 
-### Deployment
+</br>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## 개발 기간
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- 2024년 1월 2일 ~

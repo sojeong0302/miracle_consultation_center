@@ -1,10 +1,10 @@
 import "./App.css";
-import InputModal from "./component/InputModal.js";
+import NoticeModal from "./component/NoticeModal.js";
 
 function App() {
   return (
     <div className="App">
-      <InputModal />
+      <NoticeModal />
     </div>
   );
 }

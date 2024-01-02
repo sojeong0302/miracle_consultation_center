@@ -4,7 +4,7 @@ import Modal1 from "../img/Modal1.png";
 const InputModal = () => {
   return (
     <div>
-      <img alt="Modal1" src={Modal1} />
+      <img alt="입력모달" src={Modal1} />
     </div>
   );
 };

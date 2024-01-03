@@ -1,31 +1,3 @@
-/* .view-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: linear-gradient(to bottom, #b6b6b6, transparent);
-  border-radius: 10px;
-  flex-direction: column;
-  gap: 40px;
-  padding: 5%;
-}
-
-.originalText {
-  border-radius: 10px;
-  width: 90%;
-  height: 350px;
-  opacity: 0.5;
-}
-
-.myAnswer {
-  border-radius: 10px;
-  width: 90%;
-  height: 350px;
-  opacity: 0.5;
-}
-
-.view-button {
-} */
-
 .view-container {
   background: linear-gradient(to bottom, #b6b6b6, transparent);
   border-radius: 10px;

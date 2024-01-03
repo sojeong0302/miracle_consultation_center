@@ -1,11 +1,22 @@
 import "./InputModal.css";
 import React from "react";
 
-const InputModal = ({ closeModal }) => {
+const InputModal = ({
+  closeModal,
+  inputElement,
+  text,
+  buttonText,
+  buttonElement,
+}) => {
   return (
     <div className="inputModal-container">
       <div className="inputModal-element">
-        <h1>관리자님 어서오세요!</h1>
+        <h2>{text}</h2>
+        <div>{inputElement}</div>
+        <div>
+          {buttonElement}
+          {/* <button className="InputModalButton">{buttonText}</button> */}
+        </div>
       </div>
     </div>
   );

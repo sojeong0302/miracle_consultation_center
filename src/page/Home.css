@@ -22,3 +22,34 @@
   margin-left: -70%;
   cursor: pointer;
 }
+
+.home-inputId {
+  border-radius: 10px;
+  border: none;
+  width: 220px;
+  margin-left: 5px;
+  padding: 7px;
+}
+
+.home-inputPw {
+  border-radius: 10px;
+  border: none;
+  padding: 7px;
+  width: 220px;
+}
+
+.home-inputElement {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-left: -20px;
+}
+
+.home-buttonElement {
+  font-weight: bold;
+  display: flex;
+  gap: 10px;
+  width: 130px;
+  opacity: 1;
+  margin-left: 100px;
+}

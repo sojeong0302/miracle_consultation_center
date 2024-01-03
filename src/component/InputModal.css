@@ -1,18 +1,31 @@
 .inputModal-container {
   background-image: url("../img/Modal1.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-  height: 40vh;
-  width: 40vw;
-  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: fixed;
+  height: 40vh;
+  width: 40vw;
+  height: 300px;
+  width: 400px;
 }
 
 .inputModal-element {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 10%;
+  gap: 10px;
 }
+
+/* .InputModalButton {
+  height: 30px;
+  width: 65px;
+  margin-left: 170px;
+  font-weight: bold;
+  opacity: 1;
+} */

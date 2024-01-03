@@ -1,5 +1,6 @@
 import "./App.css";
 import WriteList from "./page/WriteList.js";
+import View from "./page/View.js";
 
 function App() {
   const mockData = [
@@ -70,7 +71,7 @@ function App() {
 
   return (
     <div className="App">
-      <WriteList mockData={mockData} />
+      <View />
     </div>
   );
 }

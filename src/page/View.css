@@ -1,0 +1,20 @@
+.view-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #b6b6b6;
+  border-radius: 10px;
+  flex-direction: column;
+  gap: 40px;
+  padding: 5%;
+}
+
+textarea {
+  border-radius: 10px;
+  width: 90%;
+  height: 350px;
+}
+
+Button {
+  margin-left: 140%;
+}

@@ -1,10 +1,10 @@
 import "./App.css";
-import Write from "./page/Write.js";
+import Answer from "./page/Answer.js";
 
 function App() {
   return (
     <div className="App">
-      <Write />
+      <Answer />
     </div>
   );
 }

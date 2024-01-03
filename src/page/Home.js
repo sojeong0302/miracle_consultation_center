@@ -1,4 +1,3 @@
-import BackGround from "../component/BackGround.js";
 import "./Home.css";
 import Button from "../component/Button.js";
 import React from "react";
@@ -7,7 +6,6 @@ import login from "../img/login.png";
 const Home = () => {
   return (
     <div className="home-container">
-      {/* <BackGround /> */}
       <div>
         <h1>"고민이 있으신가요?"</h1>
         <div className="button-container">

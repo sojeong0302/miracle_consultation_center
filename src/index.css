@@ -1,3 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=Gaegu:wght@300&family=Nanum+Pen+Script&display=swap");
+html,
 body {
   margin: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  font-family: "Gaegu", sans-serif;
+  height: 100%;
+  background-image: url("../src/img/BackGroundImg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+#root {
+  margin: 0 auto;
+  max-width: 600px;
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+  /* 밑에 코드 2개는 나중에 삭제 */
+  background-color: aliceblue;
+  opacity: 0.5;
 }

@@ -1,22 +1,22 @@
-/* .home-container {
+.upElement {
   display: flex;
-  justify-content: center;
-  align-items: center;
-} */
-
-/* h1 {
-  display: flex;
-  justify-content: center;
+  flex-direction: column;
+  gap: 270px;
+  margin-top: 35%;
 }
 
 .button-container {
   display: flex;
   justify-content: space-between;
-  padding: 30px;
+  margin: 120px;
+}
+
+h1 {
+  display: flex;
+  justify-content: center;
 }
 
 img {
-  width: 100px;
-  padding: 50px;
+  margin-top: -13%;
   cursor: pointer;
-} */
+}

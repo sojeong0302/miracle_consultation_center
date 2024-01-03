@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Checkbox, Pagination } from "@mui/material";
+import "./WriteList.css";
 
 const WriteList = ({ mockData }) => {
   const itemsPerPage = 8;
@@ -13,9 +14,13 @@ const WriteList = ({ mockData }) => {
     setCurrentPage(newPage);
   };
 
+  const notAnswerLength = mockData.filter(
+    (item) => item.isChecked === 0
+  ).length;
+
   return (
-    <div className="writeList-c ontainer">
-      <h1>"답변을 기다리는 상담이 10개 있습니다."</h1>
+    <div className="writeList-container">
+      <h1>"답변을 기다리는 상담이 {notAnswerLength}개 있습니다."</h1>
       <div className="list">
         {currentItems.map(({ id, nickName, date, content, isChecked }) => (
           <div key={id}>

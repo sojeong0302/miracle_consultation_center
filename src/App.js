@@ -1,4 +1,9 @@
 import "./App.css";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import React from "react";
+import Home from "./page/Home.js";
+import Write from "./page/Write.js";
+import Answer from "./page/Answer.js";
 import WriteList from "./page/WriteList.js";
 import View from "./page/View.js";
 
@@ -71,7 +76,18 @@ function App() {
 
   return (
     <div className="App">
-      <View />
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/write" element={<Write />} />
+          <Route path="/answer" element={<Answer />} />
+          <Route path="/view" element={<View />} />
+          <Route
+            path="/writeList"
+            element={<WriteList mockData={mockData} />}
+          />
+        </Routes>
+      </Router>
     </div>
   );
 }

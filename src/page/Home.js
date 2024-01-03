@@ -5,15 +5,15 @@ import login from "../img/login.png";
 
 const Home = () => {
   return (
-    <div>
+    <div className="home-container">
       <div className="upElement">
         <h1>"고민이 있으신가요?"</h1>
-        <div className="button-container">
+        <div className="home-button">
           <Button text={"상담하기"} />
           <Button text={"답변보기"} />
         </div>
       </div>
-      <img alt="로그인 버튼" src={login} />
+      <img className="home-img" alt="로그인 버튼" src={login} />
     </div>
   );
 };

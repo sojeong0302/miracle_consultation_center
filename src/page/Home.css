@@ -1,22 +1,24 @@
-.upElement {
+.home-container {
   display: flex;
   flex-direction: column;
-  gap: 270px;
+  justify-content: center;
+  align-items: center;
   margin-top: 35%;
 }
 
-.button-container {
+.home-button {
   display: flex;
   justify-content: space-between;
-  margin: 120px;
 }
 
-h1 {
+.upElement {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  gap: 400px;
 }
 
-img {
-  margin-top: -13%;
+.home-img {
+  display: flex;
+  margin-left: -70%;
   cursor: pointer;
 }

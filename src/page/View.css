@@ -1,20 +1,65 @@
-.view-container {
+/* .view-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #b6b6b6;
+  background: linear-gradient(to bottom, #b6b6b6, transparent);
   border-radius: 10px;
   flex-direction: column;
   gap: 40px;
   padding: 5%;
 }
 
-textarea {
+.originalText {
   border-radius: 10px;
   width: 90%;
   height: 350px;
+  opacity: 0.5;
 }
 
-Button {
-  margin-left: 140%;
+.myAnswer {
+  border-radius: 10px;
+  width: 90%;
+  height: 350px;
+  opacity: 0.5;
+}
+
+.view-button {
+} */
+
+.view-container {
+  background: linear-gradient(to bottom, #b6b6b6, transparent);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  padding: 5%;
+  gap: 20px;
+  margin-top: 15%;
+}
+
+.view-textare {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+.originalText {
+  border-radius: 10px;
+  width: 90%;
+  height: 300px;
+  opacity: 0.5;
+}
+
+.myAnswer {
+  border-radius: 10px;
+  width: 90%;
+  height: 300px;
+  opacity: 0.5;
+}
+
+.view-button {
+  width: 95%;
+  display: flex;
+  justify-content: end;
 }

@@ -12,27 +12,45 @@
   margin-top: 20%;
 }
 
-.button-container {
+.write-button {
   display: flex;
-  gap: 100px;
+  width: 95%;
+  justify-content: space-between;
 }
 
-input {
+.write-input {
   border-radius: 10px;
-  width: 80%;
-  height: 40px;
+  width: 90%;
+  opacity: 0.5;
+  border: none;
+  font-family: "Gaegu", sans-serif;
+  font-size: 1.1em;
+  font-weight: bold;
+  padding: 3%;
 }
 
-input::placeholder {
-  font-size: 1.5em;
+.write-input::placeholder {
+  font-size: 1.1em;
   font-weight: bold;
   font-family: "Gaegu", sans-serif;
-  padding: 3%;
   color: rgb(65, 65, 65);
 }
 
-textarea {
+.write-textarea {
   border-radius: 10px;
-  width: 80%;
+  width: 90%;
   height: 450px;
+  opacity: 0.5;
+  border: none;
+  font-size: 1.1em;
+  font-weight: bold;
+  font-family: "Gaegu", sans-serif;
+  padding: 3%;
+}
+
+.write-textarea::placeholder {
+  font-size: 1.1em;
+  font-weight: bold;
+  font-family: "Gaegu", sans-serif;
+  color: rgb(65, 65, 65);
 }

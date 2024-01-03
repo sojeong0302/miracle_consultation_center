@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Checkbox, Pagination } from "@mui/material";
 import "./WriteList.css";
+import { styled } from "@mui/system";
 
 const WriteList = ({ mockData }) => {
   const itemsPerPage = 8;
@@ -18,6 +19,13 @@ const WriteList = ({ mockData }) => {
     (item) => item.isChecked === 0
   ).length;
 
+  const CustomCheckbox = styled(Checkbox)({
+    color: "#424242",
+    "&.Mui-checked": {
+      color: "#424242",
+    },
+  });
+
   return (
     <div className="writeList-container">
       <h1>"답변을 기다리는 상담이 {notAnswerLength}개 있습니다."</h1>
@@ -29,7 +37,7 @@ const WriteList = ({ mockData }) => {
             <div className="item">{date}</div>
             <div className="item">{content}</div>
             <div className="item">
-              <Checkbox checked={isChecked === 1} />
+              <CustomCheckbox checked={isChecked === 1} />
             </div>
           </div>
         ))}

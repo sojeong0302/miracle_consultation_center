@@ -1,9 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Gaegu:wght@300&family=Nanum+Pen+Script&display=swap");
+
 button {
-  width: 120px;
-  height: 54px;
+  width: 100px;
+  height: 50px;
   border-radius: 10px;
   background-color: #d9d9d9;
   border: none;
   cursor: pointer;
   opacity: 0.5;
+  font-family: "Gaegu", sans-serif;
+  font-size: 1.2em;
+  font-weight: bold;
 }

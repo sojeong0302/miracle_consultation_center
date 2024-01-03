@@ -23,9 +23,14 @@ const WriteList = ({ mockData }) => {
       <h1>"답변을 기다리는 상담이 {notAnswerLength}개 있습니다."</h1>
       <div className="list">
         {currentItems.map(({ id, nickName, date, content, isChecked }) => (
-          <div key={id}>
-            {id} {nickName} {date} {content}
-            <Checkbox checked={isChecked === 1} />
+          <div key={id} className="item-container">
+            <div className="item">{id}</div>
+            <div className="item">{nickName}</div>
+            <div className="item">{date}</div>
+            <div className="item">{content}</div>
+            <div className="item">
+              <Checkbox checked={isChecked === 1} />
+            </div>
           </div>
         ))}
       </div>

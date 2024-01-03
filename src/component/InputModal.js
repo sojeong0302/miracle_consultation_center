@@ -1,10 +1,12 @@
 import "./InputModal.css";
-import Modal1 from "../img/Modal1.png";
+import React from "react";
 
-const InputModal = () => {
+const InputModal = ({ closeModal }) => {
   return (
-    <div>
-      <img alt="입력모달" src={Modal1} />
+    <div className="inputModal-container">
+      <div className="inputModal-element">
+        <h1>관리자님 어서오세요!</h1>
+      </div>
     </div>
   );
 };

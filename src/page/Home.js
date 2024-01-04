@@ -46,7 +46,7 @@ const Home = () => {
 
   const AnserModalElement = (
     <div>
-      <label>Number </label>
+      <label>Code </label>
       <input className="home-inputNumber" />
     </div>
   );

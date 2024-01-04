@@ -15,6 +15,7 @@ function App() {
       date: "2023-01-01",
       content: "mock1",
       isChecked: 0,
+      code: "A35YYRR",
     },
     {
       id: 2,
@@ -22,6 +23,7 @@ function App() {
       date: "2023-01-01",
       content: "mock1",
       isChecked: 1,
+      code: "EFI4TFJI",
     },
     {
       id: 3,
@@ -29,48 +31,7 @@ function App() {
       date: "2023-01-01",
       content: "mock1",
       isChecked: 1,
-    },
-    {
-      id: 4,
-      nickName: "소정",
-      date: "2023-01-01",
-      content: "mock1",
-      isChecked: 1,
-    },
-    {
-      id: 5,
-      nickName: "소정",
-      date: "2023-01-01",
-      content: "mock1",
-      isChecked: 1,
-    },
-    {
-      id: 6,
-      nickName: "소정",
-      date: "2023-01-01",
-      content: "mock1",
-      isChecked: 0,
-    },
-    {
-      id: 7,
-      nickName: "소정",
-      date: "2023-01-01",
-      content: "mock1",
-      isChecked: 0,
-    },
-    {
-      id: 8,
-      nickName: "소정",
-      date: "2023-01-01",
-      content: "mock1",
-      isChecked: 0,
-    },
-    {
-      id: 9,
-      nickName: "소정",
-      date: "2023-01-01",
-      content: "mock1",
-      isChecked: 0,
+      code: "FI4F9D",
     },
   ];
 

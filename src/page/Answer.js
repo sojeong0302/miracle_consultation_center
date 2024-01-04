@@ -7,7 +7,7 @@ const Answer = () => {
       <input className="answer-input" />
       <textarea className="answer-textarea" />
       <div className="answer-button">
-        <Button text={"돌아가기"} />
+        <Button text={"취소"} route="/" />
       </div>
     </div>
   );

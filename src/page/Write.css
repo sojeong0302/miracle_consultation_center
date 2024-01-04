@@ -54,3 +54,30 @@
   font-family: "Gaegu", sans-serif;
   color: rgb(65, 65, 65);
 }
+
+.write-noticeModal {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20%;
+  font-size: 0.9em;
+  width: 400px;
+}
+
+.notice {
+  line-height: 1.4;
+}
+
+.write-number {
+  border-radius: 10px;
+  border: none;
+  padding: 7px;
+  width: 200px;
+  opacity: 0.5;
+}
+
+.number-element {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 3%;
+}

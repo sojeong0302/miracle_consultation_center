@@ -39,7 +39,7 @@ const Home = () => {
 
   const buttonElement = (
     <div className="home-buttonElement">
-      <button>취소</button>
+      <button onClick={closeModal}>취소</button>
       <button>입장</button>
     </div>
   );
@@ -49,8 +49,8 @@ const Home = () => {
       <div className="upElement">
         <h1>"고민이 있으신가요?"</h1>
         <div className="home-button">
-          <Button text={"상담하기"} />
-          <Button text={"답변보기"} />
+          <Button text={"상담하기"} route="/write" />
+          <Button text={"답변보기"} route="/answer" />
         </div>
       </div>
       <img

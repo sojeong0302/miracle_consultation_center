@@ -53,3 +53,19 @@
   opacity: 1;
   margin-left: 100px;
 }
+
+.home-inputNumber {
+  border-radius: 10px;
+  border: none;
+  padding: 7px;
+}
+
+.home-AnswerButtonElement {
+  font-weight: bold;
+  display: flex;
+  gap: 10px;
+  width: 160px;
+  opacity: 1;
+  margin-left: 70px;
+  margin-top: 10%;
+}

@@ -5,42 +5,56 @@ import login from "../img/login.png";
 import InputModal from "../component/InputModal.js";
 
 const Home = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [inputValue, setInputValue] = useState("");
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const [isAnswerModalOpen, setIsAnswerModalOpen] = useState(false);
 
-  const openModal = () => {
-    setIsModalOpen(true);
+  const openLoginModal = () => {
+    setIsLoginModalOpen(true);
   };
 
-  const closeModal = () => {
-    setIsModalOpen(false);
+  const closeLoginModal = () => {
+    setIsLoginModalOpen(false);
+  };
+
+  const openAnswerModal = () => {
+    setIsAnswerModalOpen(true);
+  };
+
+  const closeAnswerModal = () => {
+    setIsAnswerModalOpen(false);
   };
 
   const inputElement = (
     <div className="home-inputElement">
       <div>
-        <label htmlFor="inputId"> ID </label>
-        <input
-          id="inputId"
-          onChange={(e) => setInputValue(e.target.value)}
-          className="home-inputId"
-        />
+        <label> ID </label>
+        <input className="home-inputId" />
       </div>
       <div>
-        <label htmlFor="inputPw"> PW </label>
-        <input
-          id="inputPw"
-          onChange={(e) => setInputValue(e.target.value)}
-          className="home-inputPw"
-        />
+        <label> PW </label>
+        <input className="home-inputPw" />
       </div>
     </div>
   );
 
   const buttonElement = (
     <div className="home-buttonElement">
-      <button onClick={closeModal}>취소</button>
+      <button onClick={closeLoginModal}>취소</button>
       <button>입장</button>
+    </div>
+  );
+
+  const AnserModalElement = (
+    <div>
+      <label>Number </label>
+      <input className="home-inputNumber" />
+    </div>
+  );
+
+  const AnswerModalButton = (
+    <div className="home-AnswerButtonElement">
+      <button onClick={closeAnswerModal}>취소</button>
+      <button>답변보기</button>
     </div>
   );
 
@@ -50,22 +64,31 @@ const Home = () => {
         <h1>"고민이 있으신가요?"</h1>
         <div className="home-button">
           <Button text={"상담하기"} route="/write" />
-          <Button text={"답변보기"} route="/answer" />
+          <Button text={"답변보기"} onClick={openAnswerModal} />
         </div>
       </div>
       <img
         className="home-img"
         alt="로그인 버튼"
         src={login}
-        onClick={openModal}
+        onClick={openLoginModal}
       />
-      {isModalOpen && (
+      {isLoginModalOpen && (
         <InputModal
-          onClose={closeModal}
+          onClose={closeLoginModal}
           inputElement={inputElement}
           text={"관리자님 어서오세요!"}
           buttonText={"입장"}
           buttonElement={buttonElement}
+        />
+      )}
+      {isAnswerModalOpen && (
+        <InputModal
+          onClose={closeLoginModal}
+          inputElement={AnserModalElement}
+          text={"답변을 찾으러 오셨나요?"}
+          buttonText={"입장"}
+          buttonElement={AnswerModalButton}
         />
       )}
     </div>

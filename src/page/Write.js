@@ -37,7 +37,7 @@ const Write = () => {
         <h4>※ number는 재발급 받을 수 없습니다.</h4>
         <h3 className="write-from">from. 기적의 상담소</h3>
         <div className="noticeButton">
-          <Button text={"확인"} />
+          <Button text={"확인"} onClick={closeModal} route="/" />
         </div>
       </div>
     </div>

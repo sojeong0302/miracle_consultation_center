@@ -1,8 +1,7 @@
 import "./NoticeModal.css";
 import React from "react";
-import Modal2 from "../img/Modal2.png";
 
-const NoticeModal = ({ text, noticeElement }) => {
+const NoticeModal = ({ text, noticeElement, closeModal }) => {
   console.log("모달 열림");
   return (
     <div className="noticeModal-container">

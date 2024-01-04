@@ -41,8 +41,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/write" element={<Write />} />
-          <Route path="/answer" element={<Answer />} />
-          <Route path="/view" element={<View />} />
+          <Route path="/answer/:code" element={<Answer />} />
+          <Route path="/view/:code" element={<View />} />
           <Route
             path="/writeList"
             element={<WriteList mockData={mockData} />}

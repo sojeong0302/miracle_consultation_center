@@ -28,10 +28,18 @@ const Write = () => {
         </h2>
       </div>
       <div className="number-element">
-        <label htmlFor="number"> Number </label>
+        <label htmlFor="number" className="numberLabel">
+          Number
+        </label>
         <input id="number" className="write-number" />
       </div>
-      <h3>※ number는 재발급 받을 수 없습니다.</h3>
+      <div>
+        <h4>※ number는 재발급 받을 수 없습니다.</h4>
+        <h3 className="write-from">from. 기적의 상담소</h3>
+        <div className="noticeButton">
+          <Button text={"확인"} />
+        </div>
+      </div>
     </div>
   );
 

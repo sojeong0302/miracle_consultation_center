@@ -63,3 +63,8 @@
 ## 개발 기간
 
 - 2024년 1월 2일 ~
+
+## 출처
+
+- ### 복사 아이콘
+  <a href="https://www.flaticon.com/uicons">Flaticon</a>의 UIcon

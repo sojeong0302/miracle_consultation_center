@@ -2,11 +2,8 @@ import "./Write.css";
 import Button from "../component/Button.js";
 import { useState } from "react";
 import NoticeModal from "../component/NoticeModal.js";
-import { useHistory, useNavigate } from "react-router-dom";
 
 const Write = ({ onCreateNewData }) => {
-  const navigate = useNavigate();
-
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [nickName, setNickName] = useState("");
   const [content, setContent] = useState("");
@@ -20,8 +17,8 @@ const Write = ({ onCreateNewData }) => {
       isChecked: 0,
       code: Math.random().toString(36).substring(7),
     };
-    onCreateNewData(newData); // 데이터 업데이트
-    setIsModalOpen(true); // 모달 열기
+    onCreateNewData(newData);
+    setIsModalOpen(true);
   };
 
   const closeModal = () => {

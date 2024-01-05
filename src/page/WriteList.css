@@ -3,30 +3,28 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: rgba(182, 182, 182, 0.5); /* RGB 색상 + 투명도 값 */
+  background-color: rgba(182, 182, 182, 0.5);
   border-radius: 10px;
-  gap: 60px;
   margin-top: 20%;
-  padding: 5%;
+  gap: 60px;
 }
 
 .list {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 20px;
+  width: 80%;
 }
 
 .item-container {
   display: flex;
-  gap: 50px;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   border-bottom: 2px solid #5d5d5d;
 }
 
 .item {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-left: 15px;
   font-weight: bold;
   font-size: 1.1em;
 }

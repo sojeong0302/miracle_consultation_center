@@ -4,18 +4,12 @@ import "./WriteList.css";
 import { styled } from "@mui/system";
 
 const WriteList = ({ mockData }) => {
-  const [listData, setListData] = useState(mockData);
-
-  useEffect(() => {
-    setListData(mockData); // mockData가 변경될 때 listData를 업데이트
-  }, [mockData]);
-
   const itemsPerPage = 8;
   const [currentPage, setCurrentPage] = useState(1);
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = listData.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = mockData.slice(indexOfFirstItem, indexOfLastItem);
 
   const handleChangePage = (event, newPage) => {
     setCurrentPage(newPage);
@@ -31,11 +25,6 @@ const WriteList = ({ mockData }) => {
       color: "#424242",
     },
   });
-
-  useEffect(() => {
-    console.log("List Data updated:", listData);
-    // 여기에서 필요한 처리를 수행
-  }, [listData]);
 
   return (
     <div className="writeList-container">

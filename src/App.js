@@ -38,8 +38,6 @@ function App() {
   const handleCreateNewData = (newData) => {
     setMockData((prevData) => {
       const updatedData = [...prevData, newData];
-      console.log("New Data:", newData);
-      console.log("Updated Mock Data:", updatedData);
       return updatedData;
     });
   };

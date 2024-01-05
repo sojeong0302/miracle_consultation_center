@@ -10,8 +10,6 @@ const View = ({ mockData }) => {
   };
   const { code } = params;
   const selectedItem = mockData?.find((mockData) => mockData.code === code);
-  console.log("Params:", params);
-  console.log("MockData:", mockData);
 
   return (
     <div className="view-container">
@@ -25,6 +23,9 @@ const View = ({ mockData }) => {
       </div>
       <div className="view-button">
         <Button text={"취소"} onClick={goBack} />
+        {selectedItem?.isChecked === 0 && (
+          <Button text={"보내기"} onClick={() => {}} />
+        )}
       </div>
     </div>
   );

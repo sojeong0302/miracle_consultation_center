@@ -44,4 +44,5 @@
   width: 98%;
   display: flex;
   justify-content: end;
+  gap: 3%;
 }

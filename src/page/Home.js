@@ -3,10 +3,12 @@ import Button from "../component/Button.js";
 import React, { useState } from "react";
 import login from "../img/login.png";
 import InputModal from "../component/InputModal.js";
+import { useNavigate } from "react-router-dom";
 
-const Home = () => {
+const Home = ({ mockData }) => {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isAnswerModalOpen, setIsAnswerModalOpen] = useState(false);
+  const navigate = useNavigate();
 
   const openLoginModal = () => {
     setIsLoginModalOpen(true);
@@ -47,16 +49,28 @@ const Home = () => {
   const AnserModalElement = (
     <div>
       <label>Code </label>
-      <input className="home-inputNumber" />
+      <input className="home-inputNumber" id="codeInput" />
     </div>
   );
 
   const AnswerModalButton = (
     <div className="home-AnswerButtonElement">
       <button onClick={closeAnswerModal}>취소</button>
-      <button>답변보기</button>
+      <button onClick={() => handleAnswerButtonClick()}>답변보기</button>
     </div>
   );
+
+  const handleAnswerButtonClick = () => {
+    const codeInput = document.getElementById("codeInput");
+    const code = codeInput.value;
+    const codeExists = mockData.some((item) => item.code === code);
+
+    if (codeExists) {
+      navigate(`/answer/${code}`);
+    } else {
+      alert("해당 코드에 대한 정보가 없습니다.");
+    }
+  };
 
   return (
     <div className="home-container">
@@ -78,7 +92,6 @@ const Home = () => {
           onClose={closeLoginModal}
           inputElement={inputElement}
           text={"관리자님 어서오세요!"}
-          buttonText={"입장"}
           buttonElement={buttonElement}
         />
       )}
@@ -87,7 +100,6 @@ const Home = () => {
           onClose={closeLoginModal}
           inputElement={AnserModalElement}
           text={"답변을 찾으러 오셨나요?"}
-          buttonText={"입장"}
           buttonElement={AnswerModalButton}
         />
       )}

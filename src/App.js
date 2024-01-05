@@ -53,7 +53,7 @@ function App() {
     <div className="App">
       <Router>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home mockData={mockData} />} />
           <Route
             path="/write"
             element={<Write onCreateNewData={handleCreateNewData} />}

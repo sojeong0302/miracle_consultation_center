@@ -17,7 +17,9 @@ const View = ({ mockData, setMockData }) => {
     if (selectedItem?.isChecked === 0) {
       setMockData((prevData) => {
         const updatedData = prevData.map((item) =>
-          item.code === selectedItem.code ? { ...item, answer: answer } : item
+          item.code === selectedItem.code
+            ? { ...item, answer: answer, isChecked: 1 }
+            : item
         );
         console.log(updatedData);
         return updatedData;

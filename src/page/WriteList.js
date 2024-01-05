@@ -4,6 +4,7 @@ import "./WriteList.css";
 import { styled } from "@mui/system";
 
 const WriteList = ({ mockData }) => {
+  console.log(mockData);
   const itemsPerPage = 8;
   const [currentPage, setCurrentPage] = useState(1);
 

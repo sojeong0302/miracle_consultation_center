@@ -9,13 +9,26 @@ const Write = ({ onCreateNewData }) => {
   const [content, setContent] = useState("");
 
   const openModal = () => {
+    const generateCode = () => {
+      const characters =
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+      let code = "";
+
+      for (let i = 0; i < 10; i++) {
+        const randomIndex = Math.floor(Math.random() * characters.length);
+        code += characters.charAt(randomIndex);
+      }
+
+      return code;
+    };
+
     const newData = {
       id: Math.floor(Math.random() * 1000) + 1,
       nickName: nickName,
       date: new Date().toISOString().slice(0, 10),
       content: content,
       isChecked: 0,
-      code: Math.random().toString(36).substring(7),
+      code: generateCode(),
     };
     onCreateNewData(newData);
     setIsModalOpen(true);

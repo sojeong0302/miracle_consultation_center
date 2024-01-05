@@ -33,6 +33,7 @@ const Write = ({ onCreateNewData }) => {
       content: content,
       isChecked: 0,
       code: newCode,
+      answer: "",
     };
     onCreateNewData(newData);
     setIsModalOpen(true);

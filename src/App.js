@@ -14,8 +14,9 @@ function App() {
       nickName: "소정",
       date: "2023-01-01",
       content: "mock1",
-      isChecked: 0,
+      isChecked: 1,
       code: "A35YYRR",
+      answer: "답장",
     },
     {
       id: 2,
@@ -24,14 +25,16 @@ function App() {
       content: "mock1",
       isChecked: 1,
       code: "EFI4TFJI",
+      answer: "답장임",
     },
     {
       id: 3,
       nickName: "소정",
       date: "2023-01-01",
       content: "mock1",
-      isChecked: 1,
+      isChecked: 0,
       code: "FI4F9D",
+      answer: "gegeg",
     },
   ]);
 

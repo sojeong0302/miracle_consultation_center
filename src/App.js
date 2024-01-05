@@ -37,7 +37,14 @@ function App() {
 
   const handleCreateNewData = (newData) => {
     setMockData((prevData) => {
-      const updatedData = [...prevData, newData];
+      const lastId = prevData.length > 0 ? prevData[prevData.length - 1].id : 0;
+      const updatedData = [
+        ...prevData,
+        {
+          ...newData,
+          id: lastId + 1,
+        },
+      ];
       return updatedData;
     });
   };

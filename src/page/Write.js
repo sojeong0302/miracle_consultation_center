@@ -2,9 +2,11 @@ import "./Write.css";
 import Button from "../component/Button.js";
 import { useState } from "react";
 import NoticeModal from "../component/NoticeModal.js";
-import { useHistory } from "react-router-dom";
+import { useHistory, useNavigate } from "react-router-dom";
 
 const Write = ({ onCreateNewData }) => {
+  const navigate = useNavigate();
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [nickName, setNickName] = useState("");
   const [content, setContent] = useState("");
@@ -18,9 +20,8 @@ const Write = ({ onCreateNewData }) => {
       isChecked: 0,
       code: Math.random().toString(36).substring(7),
     };
-    console.log("write에서 넘긴 데이터:", newData);
-    setIsModalOpen(true);
-    onCreateNewData(newData);
+    onCreateNewData(newData); // 데이터 업데이트
+    setIsModalOpen(true); // 모달 열기
   };
 
   const closeModal = () => {
@@ -49,7 +50,7 @@ const Write = ({ onCreateNewData }) => {
         <h4>※ Code는 재발급 받을 수 없습니다.</h4>
         <h3 className="write-from">from. 기적의 상담소</h3>
         <div className="noticeButton">
-          <Button text={"확인"} onClick={closeModal} route="/" />
+          <Button text={"확인"} onClick={closeModal} route="/writeList" />
         </div>
       </div>
     </div>

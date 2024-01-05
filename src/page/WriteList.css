@@ -5,21 +5,22 @@
   align-items: center;
   background-color: rgba(182, 182, 182, 0.5);
   border-radius: 10px;
-  margin-top: 20%;
-  gap: 60px;
+  margin-top: 15%;
+  gap: 30px;
+  padding: 3%;
 }
 
 .list {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 30px;
   width: 80%;
 }
 
 .item-container {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   border-bottom: 2px solid #5d5d5d;
 }
@@ -33,7 +34,7 @@
   white-space: nowrap; /* 줄 바꿈 방지 */
   overflow: hidden; /* 내용이 넘칠 경우 숨김 처리 */
   text-overflow: ellipsis; /* 넘치는 부분에 ... 표시 */
-  max-width: 10ch;
+  max-width: 7ch;
   font-weight: bold;
   font-size: 1.1em;
 }
@@ -42,7 +43,7 @@
   white-space: nowrap; /* 줄 바꿈 방지 */
   overflow: hidden; /* 내용이 넘칠 경우 숨김 처리 */
   text-overflow: ellipsis; /* 넘치는 부분에 ... 표시 */
-  max-width: 10ch;
+  max-width: 7ch;
   font-weight: bold;
   font-size: 1.1em;
 }

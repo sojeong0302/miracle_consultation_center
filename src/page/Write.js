@@ -7,6 +7,7 @@ const Write = ({ onCreateNewData }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [nickName, setNickName] = useState("");
   const [content, setContent] = useState("");
+  const [generatedCode, setGeneratedCode] = useState("");
 
   const openModal = () => {
     const generateCode = () => {
@@ -18,9 +19,12 @@ const Write = ({ onCreateNewData }) => {
         const randomIndex = Math.floor(Math.random() * characters.length);
         code += characters.charAt(randomIndex);
       }
-
       return code;
     };
+
+    const newCode = generateCode();
+
+    setGeneratedCode(newCode);
 
     const newData = {
       id: Math.floor(Math.random() * 1000) + 1,
@@ -28,7 +32,7 @@ const Write = ({ onCreateNewData }) => {
       date: new Date().toISOString().slice(0, 10),
       content: content,
       isChecked: 0,
-      code: generateCode(),
+      code: newCode,
     };
     onCreateNewData(newData);
     setIsModalOpen(true);
@@ -54,7 +58,12 @@ const Write = ({ onCreateNewData }) => {
         <label htmlFor="number" className="numberLabel">
           Code
         </label>
-        <input id="number" className="write-number" />
+        <input
+          id="number"
+          className="write-number"
+          value={generatedCode}
+          readOnly
+        />
       </div>
       <div>
         <h4>※ Code는 재발급 받을 수 없습니다.</h4>

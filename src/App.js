@@ -34,7 +34,7 @@ function App() {
       content: "mock1",
       isChecked: 0,
       code: "FI4F9D",
-      answer: "gegeg",
+      answer: "",
     },
   ]);
 
@@ -62,7 +62,10 @@ function App() {
             element={<Write onCreateNewData={handleCreateNewData} />}
           />
           <Route path="/answer/:code" element={<Answer />} />
-          <Route path="/view/:code" element={<View mockData={mockData} />} />
+          <Route
+            path="/view/:code"
+            element={<View mockData={mockData} setMockData={setMockData} />}
+          />
 
           <Route
             path="/writeList"

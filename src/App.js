@@ -59,10 +59,11 @@ function App() {
             element={<Write onCreateNewData={handleCreateNewData} />}
           />
           <Route path="/answer/:code" element={<Answer />} />
-          <Route path="/view/:code" element={<View />} />
+          <Route path="/view/:code" element={<View mockData={mockData} />} />
+
           <Route
             path="/writeList"
-            element={<WriteList mockData={mockData} code={mockData.code} />}
+            element={<WriteList mockData={mockData} />}
           />
         </Routes>
       </Router>

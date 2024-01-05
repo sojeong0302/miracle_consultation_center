@@ -7,10 +7,8 @@ import { useNavigate } from "react-router-dom";
 const WriteList = ({ mockData }) => {
   const navigate = useNavigate();
 
-  console.log(mockData);
   const itemsPerPage = 8;
   const [currentPage, setCurrentPage] = useState(1);
-
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = mockData.slice(indexOfFirstItem, indexOfLastItem);

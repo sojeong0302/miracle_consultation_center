@@ -61,7 +61,10 @@ function App() {
             path="/write"
             element={<Write onCreateNewData={handleCreateNewData} />}
           />
-          <Route path="/answer/:code" element={<Answer />} />
+          <Route
+            path="/answer/:code"
+            element={<Answer mockData={mockData} />}
+          />
           <Route
             path="/view/:code"
             element={<View mockData={mockData} setMockData={setMockData} />}

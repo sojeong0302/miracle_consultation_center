@@ -4,7 +4,7 @@ import "./WriteList.css";
 import { styled } from "@mui/system";
 import { useNavigate } from "react-router-dom";
 
-const WriteList = ({ mockData, code }) => {
+const WriteList = ({ mockData }) => {
   const navigate = useNavigate();
 
   console.log(mockData);
@@ -30,25 +30,31 @@ const WriteList = ({ mockData, code }) => {
     },
   });
 
-  const goDetail = () => {
-    navigate(`/View/${code}`);
+  const goDetail = (code) => {
+    navigate(`/view/${code}`);
   };
 
   return (
     <div className="writeList-container">
       <h1>"답변을 기다리는 상담이 {notAnswerLength}개 있습니다."</h1>
       <div className="list">
-        {currentItems.map(({ id, nickName, date, content, isChecked }) => (
-          <div key={id} className="item-container" onClick={goDetail}>
-            <div className="item">{id}</div>
-            <div className="item-nickName">{nickName}</div>
-            <div className="item">{date}</div>
-            <div className="item-content">{content}</div>
-            <div className="item">
-              <CustomCheckbox checked={isChecked === 1} />
+        {currentItems.map(
+          ({ id, nickName, date, content, isChecked, code }) => (
+            <div
+              key={id}
+              className="item-container"
+              onClick={() => goDetail(code)}
+            >
+              <div className="item">{id}</div>
+              <div className="item-nickName">{nickName}</div>
+              <div className="item">{date}</div>
+              <div className="item-content">{content}</div>
+              <div className="item">
+                <CustomCheckbox checked={isChecked === 1} />
+              </div>
             </div>
-          </div>
-        ))}
+          )
+        )}
       </div>
       <Pagination
         count={Math.ceil(mockData.length / itemsPerPage)}

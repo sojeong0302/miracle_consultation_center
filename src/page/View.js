@@ -1,9 +1,13 @@
 import "./View.css";
 import Button from "../component/Button.js";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const View = () => {
+  const navigate = useNavigate();
   const params = useParams();
+  const goBack = () => {
+    navigate(-1);
+  };
 
   return (
     <div className="view-container">
@@ -12,7 +16,7 @@ const View = () => {
         <textarea className="myAnswer"></textarea>
       </div>
       <div className="view-button">
-        <Button text={"취소"} />
+        <Button text={"취소"} onClick={goBack} />
       </div>
     </div>
   );

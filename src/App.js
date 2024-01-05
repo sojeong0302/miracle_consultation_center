@@ -62,7 +62,7 @@ function App() {
           <Route path="/view/:code" element={<View />} />
           <Route
             path="/writeList"
-            element={<WriteList mockData={mockData} />}
+            element={<WriteList mockData={mockData} code={mockData.code} />}
           />
         </Routes>
       </Router>

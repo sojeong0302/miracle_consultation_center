@@ -2,8 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Checkbox, Pagination } from "@mui/material";
 import "./WriteList.css";
 import { styled } from "@mui/system";
+import { useNavigate } from "react-router-dom";
 
-const WriteList = ({ mockData }) => {
+const WriteList = ({ mockData, code }) => {
+  const navigate = useNavigate();
+
   console.log(mockData);
   const itemsPerPage = 8;
   const [currentPage, setCurrentPage] = useState(1);
@@ -27,12 +30,16 @@ const WriteList = ({ mockData }) => {
     },
   });
 
+  const goDetail = () => {
+    navigate(`/View/${code}`);
+  };
+
   return (
     <div className="writeList-container">
       <h1>"답변을 기다리는 상담이 {notAnswerLength}개 있습니다."</h1>
       <div className="list">
         {currentItems.map(({ id, nickName, date, content, isChecked }) => (
-          <div key={id} className="item-container">
+          <div key={id} className="item-container" onClick={goDetail}>
             <div className="item">{id}</div>
             <div className="item-nickName">{nickName}</div>
             <div className="item">{date}</div>

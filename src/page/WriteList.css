@@ -28,3 +28,21 @@
   font-weight: bold;
   font-size: 1.1em;
 }
+
+.item-content {
+  white-space: nowrap; /* 줄 바꿈 방지 */
+  overflow: hidden; /* 내용이 넘칠 경우 숨김 처리 */
+  text-overflow: ellipsis; /* 넘치는 부분에 ... 표시 */
+  max-width: 10ch;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+.item-nickName {
+  white-space: nowrap; /* 줄 바꿈 방지 */
+  overflow: hidden; /* 내용이 넘칠 경우 숨김 처리 */
+  text-overflow: ellipsis; /* 넘치는 부분에 ... 표시 */
+  max-width: 10ch;
+  font-weight: bold;
+  font-size: 1.1em;
+}

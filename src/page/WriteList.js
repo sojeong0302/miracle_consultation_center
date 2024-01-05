@@ -33,9 +33,9 @@ const WriteList = ({ mockData }) => {
         {currentItems.map(({ id, nickName, date, content, isChecked }) => (
           <div key={id} className="item-container">
             <div className="item">{id}</div>
-            <div className="item">{nickName}</div>
+            <div className="item-nickName">{nickName}</div>
             <div className="item">{date}</div>
-            <div className="item">{content}</div>
+            <div className="item-content">{content}</div>
             <div className="item">
               <CustomCheckbox checked={isChecked === 1} />
             </div>

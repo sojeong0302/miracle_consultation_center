@@ -2,13 +2,25 @@ import "./Write.css";
 import Button from "../component/Button.js";
 import { useState } from "react";
 import NoticeModal from "../component/NoticeModal.js";
-import Duplication from "../img/Duplication.png";
+import { useHistory } from "react-router-dom";
 
-const Write = () => {
+const Write = ({ onCreateNewData }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [nickName, setNickName] = useState("");
+  const [content, setContent] = useState("");
 
   const openModal = () => {
+    const newData = {
+      id: Math.floor(Math.random() * 1000) + 1,
+      nickName: nickName,
+      date: new Date().toISOString().slice(0, 10),
+      content: content,
+      isChecked: 0,
+      code: Math.random().toString(36).substring(7),
+    };
+    console.log("write에서 넘긴 데이터:", newData);
     setIsModalOpen(true);
+    onCreateNewData(newData);
   };
 
   const closeModal = () => {
@@ -45,8 +57,15 @@ const Write = () => {
 
   return (
     <div className="write-container">
-      <input className="write-input" placeholder="가명도 괜찮아요" />
+      <input
+        value={nickName}
+        onChange={(e) => setNickName(e.target.value)}
+        className="write-input"
+        placeholder="가명도 괜찮아요"
+      />
       <textarea
+        value={content}
+        onChange={(e) => setContent(e.target.value)}
         className="write-textarea"
         placeholder="고민을 자유롭게 입력해주세요..."
       />

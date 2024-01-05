@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Checkbox, Pagination } from "@mui/material";
 import "./WriteList.css";
 import { styled } from "@mui/system";
@@ -25,6 +25,11 @@ const WriteList = ({ mockData }) => {
       color: "#424242",
     },
   });
+
+  useEffect(() => {
+    console.log("MockData updated:", mockData);
+    // 여기에서 필요한 처리를 수행
+  }, [mockData]);
 
   return (
     <div className="writeList-container">

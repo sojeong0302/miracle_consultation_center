@@ -2,7 +2,6 @@ import "./NoticeModal.css";
 import React from "react";
 
 const NoticeModal = ({ text, noticeElement, closeModal }) => {
-  console.log("모달 열림");
   return (
     <div className="noticeModal-container">
       <div className="noticeModal-element">

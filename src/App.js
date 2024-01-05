@@ -1,6 +1,6 @@
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import React from "react";
+import React, { useReducer, useRef, useEffect, useState } from "react";
 import Home from "./page/Home.js";
 import Write from "./page/Write.js";
 import Answer from "./page/Answer.js";
@@ -8,7 +8,7 @@ import WriteList from "./page/WriteList.js";
 import View from "./page/View.js";
 
 function App() {
-  const mockData = [
+  const [mockData, setMockData] = useState([
     {
       id: 1,
       nickName: "소정",
@@ -33,14 +33,26 @@ function App() {
       isChecked: 1,
       code: "FI4F9D",
     },
-  ];
+  ]);
+
+  const handleCreateNewData = (newData) => {
+    setMockData((prevData) => {
+      const updatedData = [...prevData, newData];
+      console.log("New Data:", newData);
+      console.log("Updated Mock Data:", updatedData);
+      return updatedData;
+    });
+  };
 
   return (
     <div className="App">
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/write" element={<Write />} />
+          <Route
+            path="/write"
+            element={<Write onCreateNewData={handleCreateNewData} />}
+          />
           <Route path="/answer/:code" element={<Answer />} />
           <Route path="/view/:code" element={<View />} />
           <Route

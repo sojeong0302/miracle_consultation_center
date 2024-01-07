@@ -69,3 +69,27 @@
   margin-left: 70px;
   margin-top: 10%;
 }
+
+.home-noticeModal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-notice {
+  font-size: 0.9em;
+  width: 97%;
+  margin-left: 27%;
+  line-height: 1.5;
+}
+
+.home-from {
+  margin-left: 80%;
+  width: 100%;
+}
+
+.home-noticButton {
+  margin-left: 125%;
+  width: 100%;
+}

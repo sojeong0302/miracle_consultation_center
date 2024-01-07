@@ -34,7 +34,7 @@ function App() {
       content: "mock1",
       isChecked: 0,
       code: "FI4F9D",
-      answer: "",
+      answer: null,
     },
   ]);
 

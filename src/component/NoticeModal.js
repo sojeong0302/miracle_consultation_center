@@ -1,7 +1,7 @@
 import "./NoticeModal.css";
 import React from "react";
 
-const NoticeModal = ({ text, noticeElement, closeModal }) => {
+const NoticeModal = ({ text, noticeElement }) => {
   return (
     <div className="noticeModal-container">
       <div className="noticeModal-element">

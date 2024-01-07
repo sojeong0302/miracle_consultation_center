@@ -1,7 +1,7 @@
 import "./View.css";
 import Button from "../component/Button.js";
 import { useNavigate, useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const View = ({ mockData, setMockData }) => {
   const [answer, setAnswer] = useState("");

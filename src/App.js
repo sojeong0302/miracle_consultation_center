@@ -1,6 +1,6 @@
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import React, { useReducer, useRef, useEffect, useState } from "react";
+import React, { useState } from "react";
 import Home from "./page/Home.js";
 import Write from "./page/Write.js";
 import Answer from "./page/Answer.js";

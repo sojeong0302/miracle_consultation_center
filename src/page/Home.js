@@ -11,6 +11,7 @@ const Home = ({ mockData }) => {
   const [isAnswerModalOpen, setIsAnswerModalOpen] = useState(false);
   const [isNoAnswerModalOpen, setIsNoAnswerModalOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
+
   const navigate = useNavigate();
 
   const openLoginModal = () => {
@@ -103,7 +104,7 @@ const Home = ({ mockData }) => {
       <div>
         <h3 className="home-from">from. 기적의 상담소</h3>
         <div className="home-noticButton">
-          <Button text={"확인"} route="/writeList" />
+          <Button text={"확인"} route="/" />
         </div>
       </div>
     </div>

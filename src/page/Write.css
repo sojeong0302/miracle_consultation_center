@@ -1,101 +1,102 @@
-@import url("https://fonts.googleapis.com/css2?family=Gaegu:wght@300&family=Nanum+Pen+Script&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Gaegu:wght@300&family=Nanum+Pen+Script&display=swap');
 
 .write-container {
-  background: linear-gradient(to bottom, #b6b6b6, transparent);
-  border-radius: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: 40px;
-  padding: 10%;
-  margin-top: 20%;
+    background: linear-gradient(to bottom, #b6b6b6, transparent);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 40px;
+    padding: 10%;
+    margin-top: 20%;
 }
 
 .write-button {
-  display: flex;
-  width: 95%;
-  justify-content: space-between;
+    display: flex;
+    width: 95%;
+    justify-content: space-between;
 }
 
 .write-input {
-  border-radius: 10px;
-  width: 90%;
-  opacity: 0.5;
-  border: 1px solid #000000;
-  font-family: "Gaegu", sans-serif;
-  font-size: 1.1em;
-  font-weight: bold;
-  padding: 3%;
+    border-radius: 10px;
+    width: 90%;
+    opacity: 0.5;
+    border: 1px solid #000000;
+    font-family: 'Gaegu', sans-serif;
+    font-size: 1.1em;
+    font-weight: bold;
+    padding: 3%;
 }
 
 .write-input::placeholder {
-  font-size: 1.1em;
-  font-weight: bold;
-  font-family: "Gaegu", sans-serif;
-  color: rgb(65, 65, 65);
+    font-size: 1.1em;
+    font-weight: bold;
+    font-family: 'Gaegu', sans-serif;
+    color: rgb(65, 65, 65);
 }
 
 .write-textarea {
-  border-radius: 10px;
-  width: 90%;
-  height: 450px;
-  opacity: 0.5;
-  border: 1px solid #000000;
-  font-size: 1.1em;
-  font-weight: bold;
-  font-family: "Gaegu", sans-serif;
-  padding: 3%;
+    border-radius: 10px;
+    width: 90%;
+    height: 450px;
+    opacity: 0.5;
+    border: 1px solid #000000;
+    font-size: 1.1em;
+    font-weight: bold;
+    font-family: 'Gaegu', sans-serif;
+    padding: 3%;
 }
 
 .write-textarea::placeholder {
-  font-size: 1.1em;
-  font-weight: bold;
-  font-family: "Gaegu", sans-serif;
-  color: rgb(65, 65, 65);
+    font-size: 1.1em;
+    font-weight: bold;
+    font-family: 'Gaegu', sans-serif;
+    color: rgb(65, 65, 65);
 }
 
 .write-noticeModal {
-  display: flex;
-  flex-direction: column;
-  margin-left: 20%;
-  font-size: 0.9em;
-  width: 400px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 20%;
+    font-size: 0.9em;
+    width: 400px;
 }
 
 .notice {
-  line-height: 1.22;
+    line-height: 1.22;
 }
 
 .write-number {
-  border-radius: 10px;
-  border: 1px solid #000000;
-  padding: 2%;
-  width: 100px;
-  opacity: 0.5;
-  background-image: url("../img/Duplication.png");
-  background-size: 2cap;
-  background-repeat: no-repeat;
-  background-position: right 5px center;
+    border-radius: 10px;
+    border: 1px solid #000000;
+    padding: 2%;
+    width: 100px;
+    opacity: 0.5;
+    background-image: url('../img/Duplication.png');
+    background-size: 2cap;
+    background-repeat: no-repeat;
+    background-position: right 5px center;
+    outline: none;
 }
 
 .number-element {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin-left: 2%;
-  gap: 3%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 2%;
+    gap: 3%;
 }
 
 .numberLabel {
-  font-size: 1.3em;
-  font-weight: bold;
+    font-size: 1.3em;
+    font-weight: bold;
 }
 
 .write-from {
-  margin-left: 40%;
+    margin-left: 40%;
 }
 
 .noticeButton {
-  margin-left: 53%;
+    margin-left: 53%;
 }

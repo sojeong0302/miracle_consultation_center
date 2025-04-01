@@ -2,9 +2,10 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 from flask_bcrypt import Bcrypt
 from flask_sqlalchemy import SQLAlchemy
+from datetime import date
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/*": {"origins": "*"}})
 bcrypt = Bcrypt(app)
 
 # SQLite 데이터베이스 설정 (mydatabase.db 파일이 자동으로 생성됨)
@@ -16,6 +17,16 @@ class Admin(db.Model):
     id=db.Column(db.Integer, primary_key=True)
     adminName=db.Column(db.String(80),unique=True, nullable=False)
     password=db.Column(db.String(120),nullable=False)
+
+class User(db.Model):
+    id=db.Column(db.Integer, primary_key=True)
+    nickName=db.Column(db.String(80),unique=True, nullable=False)
+    date = db.Column(db.Date, nullable=False)
+    # date = db.Column(db.Date, nullable=False, default=date.today)
+    content=db.Column(db.String(1000),nullable=False)
+    isChecked = db.Column(db.Boolean, nullable=False, default=False)
+    code=db.Column(db.String(10),nullable=False)
+    answer=db.Column(db.String(1000),default=None)
 
 with app.app_context():
     db.create_all() 
@@ -37,6 +48,27 @@ def login():
         return jsonify({"message": "로그인 성공!!!"})
     else:
          return jsonify({"message": "로그인 실패 ㅜㅜ"}), 401
+    
+@app.route('/write',methods=['POST'])
+def write():
+    data=request.json
+
+    if not data:
+        return jsonify({"error": "잘못된 요청입니다."}), 400
+
+    new_user = User(
+        nickName=data['nickName'],
+        date=date.today(),
+        content=data['content'],
+        isChecked=data.get('isChecked', False),
+        code=data['code'],
+        answer=data.get('answer', None)
+    )
+
+    db.session.add(new_user)  # DB에 추가
+    db.session.commit()  # 변경사항 저장
+
+    return jsonify({"message": "작성 완료!", "user_id": new_user.id}), 201
         
 if __name__ == '__main__':
     app.run(debug=True)

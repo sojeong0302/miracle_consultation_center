@@ -38,26 +38,27 @@ function App() {
         },
     ]);
 
-    const handleCreateNewData = (newData) => {
-        setMockData((prevData) => {
-            const lastId = prevData.length > 0 ? prevData[prevData.length - 1].id : 0;
-            const updatedData = [
-                ...prevData,
-                {
-                    ...newData,
-                    id: lastId + 1,
-                },
-            ];
-            return updatedData;
-        });
-    };
+    // const handleCreateNewData = (newData) => {
+    //     setMockData((prevData) => {
+    //         const lastId = prevData.length > 0 ? prevData[prevData.length - 1].id : 0;
+    //         const updatedData = [
+    //             ...prevData,
+    //             {
+    //                 ...newData,
+    //                 id: lastId + 1,
+    //             },
+    //         ];
+    //         return updatedData;
+    //     });
+    // };
 
     return (
         <div className='App'>
             <Router>
                 <Routes>
                     <Route path='/' element={<Home mockData={mockData} />} />
-                    <Route path='/write' element={<Write onCreateNewData={handleCreateNewData} />} />
+                    {/* <Route path='/write' element={<Write onCreateNewData={handleCreateNewData} />} /> */}
+                    <Route path='/write' element={<Write />} />
                     <Route path='/answer/:code' element={<Answer mockData={mockData} />} />
                     <Route path='/view/:code' element={<View mockData={mockData} setMockData={setMockData} />} />
 

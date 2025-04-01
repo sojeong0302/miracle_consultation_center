@@ -29,5 +29,14 @@ def register():
     db.session.commit()
     return jsonify({"message": "관리자가 추가되었습니다."}), 201
 
+@app.route('/login',methods=['POST'])
+def login():
+    data=request.json
+    admin=Admin.query.filter_by(adminName=data['adminName']).first()
+    if admin and bcrypt.check_password_hash(admin.password, data['password']):
+        return jsonify({"message": "로그인 성공!!!"})
+    else:
+         return jsonify({"message": "로그인 실패 ㅜㅜ"}), 401
+        
 if __name__ == '__main__':
     app.run(debug=True)

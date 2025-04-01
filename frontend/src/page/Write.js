@@ -2,6 +2,8 @@ import './Write.css';
 import Button from '../component/Button.js';
 import { useState, useRef } from 'react';
 import NoticeModal from '../component/NoticeModal.js';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Write = ({ onCreateNewData }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -9,6 +11,7 @@ const Write = ({ onCreateNewData }) => {
     const [content, setContent] = useState('');
     const [generatedCode, setGeneratedCode] = useState('');
     const inputRef = useRef(null);
+    const navigate = useNavigate();
 
     const handleCopy = () => {
         if (inputRef.current) {
@@ -20,6 +23,31 @@ const Write = ({ onCreateNewData }) => {
     };
 
     const openModal = () => {
+        // const generateCode = () => {
+        //     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        //     let code = '';
+        //     for (let i = 0; i < 10; i++) {
+        //         const randomIndex = Math.floor(Math.random() * characters.length);
+        //         code += characters.charAt(randomIndex);
+        //     }
+        //     return code;
+        // };
+        // const newCode = generateCode();
+        // setGeneratedCode(newCode);
+        // const newData = {
+        //     id: Math.floor(Math.random() * 1000) + 1,
+        //     nickName: nickName,
+        //     date: new Date().toISOString().slice(0, 10),
+        //     content: content,
+        //     isChecked: 0,
+        //     code: newCode,
+        //     answer: null,
+        // };
+        // onCreateNewData(newData);
+        // setIsModalOpen(true);
+    };
+
+    const worrySend = async () => {
         const generateCode = () => {
             const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
             let code = '';
@@ -35,17 +63,17 @@ const Write = ({ onCreateNewData }) => {
 
         setGeneratedCode(newCode);
 
-        const newData = {
-            id: Math.floor(Math.random() * 1000) + 1,
-            nickName: nickName,
-            date: new Date().toISOString().slice(0, 10),
-            content: content,
-            isChecked: 0,
-            code: newCode,
-            answer: null,
-        };
-        onCreateNewData(newData);
-        setIsModalOpen(true);
+        try {
+            const response = await axios.post('http://127.0.0.1:5000/write', {
+                nickName: nickName,
+                content: content,
+                code: newCode,
+            });
+            console.log(response.data);
+            setIsModalOpen(true);
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     const closeModal = () => {
@@ -103,7 +131,7 @@ const Write = ({ onCreateNewData }) => {
             />
             <div className='write-button'>
                 <Button text={'취소'} route='/' />
-                <Button text={'보내기'} onClick={openModal} />
+                <Button text={'보내기'} onClick={worrySend} />
             </div>
             {isModalOpen && <NoticeModal text={'접수완료'} noticeElement={noticeElement} />}
         </div>

@@ -70,5 +70,6 @@ def write():
 
     return jsonify({"message": "작성 완료!", "user_id": new_user.id}), 201
         
+
 if __name__ == '__main__':
     app.run(debug=True)

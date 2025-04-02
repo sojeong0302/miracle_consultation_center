@@ -70,6 +70,23 @@ def write():
 
     return jsonify({"message": "작성 완료!", "user_id": new_user.id}), 201
         
+@app.route('/writeList', methods=['GET'])
+def writeList():
+    users = User.query.all()  # 모든 데이터 조회
+    users_data = [
+        {
+            "id": user.id,
+            "nickName": user.nickName,
+            "date": user.date.strftime('%Y-%m-%d'),  # 날짜 포맷 변경
+            "content": user.content,
+            "isChecked": user.isChecked,
+            "code": user.code,
+            "answer": user.answer
+        }
+        for user in users
+    ]
+    return jsonify(users_data), 200  # JSON 형식으로 반환
+
 
 if __name__ == '__main__':
     app.run(debug=True)

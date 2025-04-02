@@ -15,18 +15,6 @@ const View = () => {
     };
     const { code } = params;
 
-    const handleSendClick = async () => {
-        try {
-            await axios.patch('http://127.0.0.1:5000/answer', {
-                code: code,
-                answer: answer,
-            });
-            setIsChecked(true);
-        } catch (error) {
-            console.log(error);
-        }
-    };
-
     useEffect(() => {
         const apiUrl = `http://127.0.0.1:5000/view/${code}`;
         axios
@@ -41,6 +29,18 @@ const View = () => {
                 console.error(error);
             });
     }, []);
+
+    const handleSendClick = async () => {
+        try {
+            await axios.patch('http://127.0.0.1:5000/answer', {
+                code: code,
+                answer: answer,
+            });
+            setIsChecked(true);
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     return (
         <div className='view-container'>

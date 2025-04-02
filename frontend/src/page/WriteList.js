@@ -13,7 +13,6 @@ const WriteList = () => {
     const [notAnswerLength, setNotAnswerLength] = useState(0);
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    // const currentItems = mockData.slice(indexOfFirstItem, indexOfLastItem);
     const [dataList, setDataList] = useState([]);
 
     const handleChangePage = (event, newPage) => {
@@ -46,11 +45,13 @@ const WriteList = () => {
             });
     }, []);
 
+    const currentItems = dataList.slice(indexOfFirstItem, indexOfLastItem);
+
     return (
         <div className='writeList-container'>
             <h1>"답변을 기다리는 상담이 {notAnswerLength}개 있습니다."</h1>
             <div className='list'>
-                {dataList.map((item) => (
+                {currentItems.map((item) => (
                     // <div key={item.id} className='item-container' onClick={() => goDetail(code)}>
                     <div key={item.id} className='item-container'>
                         <div className='item'>{item.id}</div>
@@ -64,7 +65,7 @@ const WriteList = () => {
                 ))}
             </div>
             <Pagination
-                // count={Math.ceil(mockData.length / itemsPerPage)}
+                count={Math.ceil(dataList.length / itemsPerPage)}
                 page={currentPage}
                 onChange={handleChangePage}
             />

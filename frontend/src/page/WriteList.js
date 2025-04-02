@@ -10,6 +10,7 @@ const WriteList = () => {
 
     const itemsPerPage = 8;
     const [currentPage, setCurrentPage] = useState(1);
+    const [notAnswerLength, setNotAnswerLength] = useState(0);
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
     // const currentItems = mockData.slice(indexOfFirstItem, indexOfLastItem);
@@ -18,8 +19,6 @@ const WriteList = () => {
     const handleChangePage = (event, newPage) => {
         setCurrentPage(newPage);
     };
-
-    // const notAnswerLength = mockData.filter((item) => item.isChecked === 0).length;
 
     const CustomCheckbox = styled(Checkbox)({
         color: '#424242',
@@ -34,12 +33,13 @@ const WriteList = () => {
 
     useEffect(() => {
         const apiUrl = 'http://127.0.0.1:5000/writeList';
-
         axios
             .get(apiUrl)
             .then((response) => {
                 console.log(response.data);
                 setDataList(response.data);
+                const notCheckedCount = response.data.filter((item) => !item.isChecked).length;
+                setNotAnswerLength(notCheckedCount);
             })
             .catch((error) => {
                 console.error(error);
@@ -48,7 +48,7 @@ const WriteList = () => {
 
     return (
         <div className='writeList-container'>
-            {/* <h1>"답변을 기다리는 상담이 {notAnswerLength}개 있습니다."</h1> */}
+            <h1>"답변을 기다리는 상담이 {notAnswerLength}개 있습니다."</h1>
             <div className='list'>
                 {dataList.map((item) => (
                     // <div key={item.id} className='item-container' onClick={() => goDetail(code)}>

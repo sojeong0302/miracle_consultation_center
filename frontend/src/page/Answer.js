@@ -26,9 +26,7 @@ const Answer = () => {
 
     return (
         <div className='answer-container' readOnly>
-            {/* <input className='answer-input' readOnly value={selectedItem?.nickName} /> */}
-            <input className='answer-input' readOnly value={nickName} />
-            {/* <textarea className='answer-textarea' readOnly value={selectedItem?.answer} /> */}
+            <input className='answer-input' readOnly value={nickName + '님에게'} />
             <textarea className='answer-textarea' readOnly value={answer} />
             <div className='answer-button'>
                 <Button text={'취소'} route='/' />

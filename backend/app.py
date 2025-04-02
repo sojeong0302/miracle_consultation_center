@@ -117,6 +117,20 @@ def answer():
 
     return jsonify({"message": "답변 성공!!"}), 200
     
+@app.route('/getAnswerByCode',methods=['GET'])
+def getAnswerByCode():
+    code = request.args.get('code')
+    if not code:
+        return jsonify({"error": "code parameter is required"}), 400
+    user = User.query.filter_by(code=code).first()
+    if user:
+        user_data = {
+            "nickName": user.nickName,
+            "answer": user.answer
+        }
+        return jsonify(user_data), 200
+    else:
+        return jsonify({"error": "No user found with this code"}), 404
 
 if __name__ == '__main__':
     app.run(debug=True)

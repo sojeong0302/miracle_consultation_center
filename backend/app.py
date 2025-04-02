@@ -87,6 +87,17 @@ def writeList():
     ]
     return jsonify(users_data), 200  # JSON 형식으로 반환
 
+@app.route('/view/<code>', methods=['GET'])
+def view(code):
+    item = User.query.filter_by(code=code).first()  # code에 맞는 첫 번째 항목 찾기
+    
+    if item:
+        return jsonify({
+            'content': item.content,
+            'answer': item.answer
+        })
+    else:
+        return jsonify({'error': 'Code not found'}), 404
 
 if __name__ == '__main__':
     app.run(debug=True)

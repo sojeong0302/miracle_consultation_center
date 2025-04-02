@@ -62,7 +62,8 @@ function App() {
                     <Route path='/answer/:code' element={<Answer mockData={mockData} />} />
                     <Route path='/view/:code' element={<View mockData={mockData} setMockData={setMockData} />} />
 
-                    <Route path='/writeList' element={<WriteList mockData={mockData} />} />
+                    {/* <Route path='/writeList' element={<WriteList mockData={mockData} />} /> */}
+                    <Route path='/writeList' element={<WriteList />} />
                 </Routes>
             </Router>
         </div>

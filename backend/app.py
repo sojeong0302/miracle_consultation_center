@@ -3,6 +3,7 @@ from flask_cors import CORS
 from flask_bcrypt import Bcrypt
 from flask_sqlalchemy import SQLAlchemy
 from datetime import date
+from flask_migrate import Migrate
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
@@ -12,6 +13,7 @@ bcrypt = Bcrypt(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///mydatabase.db'
 
 db = SQLAlchemy(app)
+migrate = Migrate(app, db)
 
 class Admin(db.Model):
     id=db.Column(db.Integer, primary_key=True)
@@ -20,9 +22,8 @@ class Admin(db.Model):
 
 class User(db.Model):
     id=db.Column(db.Integer, primary_key=True)
-    nickName=db.Column(db.String(80),unique=True, nullable=False)
-    date = db.Column(db.Date, nullable=False)
-    # date = db.Column(db.Date, nullable=False, default=date.today)
+    nickName=db.Column(db.String(80), nullable=False)
+    date = db.Column(db.Date, nullable=False, default=date.today)
     content=db.Column(db.String(1000),nullable=False)
     isChecked = db.Column(db.Boolean, nullable=False, default=False)
     code=db.Column(db.String(10),nullable=False)

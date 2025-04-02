@@ -9,7 +9,6 @@ app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
 bcrypt = Bcrypt(app)
 
-# SQLite 데이터베이스 설정 (mydatabase.db 파일이 자동으로 생성됨)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///mydatabase.db'
 
 db = SQLAlchemy(app)
@@ -34,12 +33,35 @@ with app.app_context():
 
 @app.route('/register',methods=['POST'])
 def register():
-    data=request.json
-    hashed_pw = bcrypt.generate_password_hash(data['password']).decode('utf-8')
-    new_admin = Admin(adminName=data['adminName'], password=hashed_pw)
-    db.session.add(new_admin)
-    db.session.commit()
-    return jsonify({"message": "관리자가 추가되었습니다."}), 201
+    try:
+        data=request.json
+        if not data:
+            return jsonify({"error": "필수 데이터를 포함해주세요."}), 400
+        
+        admin_Name = data.get('adminName')
+        password = data.get('password')
+
+        if not admin_Name or not password:
+            return jsonify({"error": "아이디와 비밀번호를 모두 입력해야 합니다."}), 400
+        
+        existing_admin = Admin.query.filter_by(adminName=admin_Name).first()
+        if existing_admin:
+            return jsonify({"error": "이미 존재하는 아이디입니다."}), 409
+
+        
+        hashed_pw = bcrypt.generate_password_hash(data['password']).decode('utf-8')
+        new_admin = Admin(adminName=data['adminName'], password=hashed_pw)
+        db.session.add(new_admin)
+        db.session.commit()
+        
+        return jsonify({"message": "관리자가 추가되었습니다."}), 201
+    
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({"message": e}), 500
+
+
+
 
 @app.route('/login',methods=['POST'])
 def login():
@@ -73,7 +95,7 @@ def write():
         
 @app.route('/writeList', methods=['GET'])
 def writeList():
-    users = User.query.all()  # 모든 데이터 조회
+    users =  User.query.order_by(User.isChecked.asc()).all()  # 모든 데이터 조회
     users_data = [
         {
             "id": user.id,
@@ -101,23 +123,24 @@ def view(code):
     else:
         return jsonify({'error': 'Code not found'}), 404
     
-@app.route('/answer', methods=['PATCH'])
-def answer():
+@app.route('/answer/<code>', methods=['PATCH'])
+def answer(code):
     data = request.json
-    code = data.get('code')
+    answer = data.get('answer')  # 클라이언트에서 전달받은 답변
 
-    # 코드로 해당 사용자를 찾기
-    user = User.query.filter_by(code=code).first()
-        
-    if not user:
+    # code로 해당 사용자를 찾기
+    item = User.query.filter_by(code=code).first()
+    
+    if not item:  # 해당 사용자가 없으면 에러 반환
         return jsonify({"error": "User not found"}), 404
 
     # 답변 업데이트
-    user.answer = data.get('answer')
-    user.isChecked = True
+    item.answer = answer
+    item.isChecked = True
     db.session.commit()
 
     return jsonify({"message": "답변 성공!!"}), 200
+
     
 @app.route('/getAnswerByCode',methods=['GET'])
 def getAnswerByCode():

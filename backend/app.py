@@ -113,6 +113,7 @@ def answer():
 
     # 답변 업데이트
     user.answer = data.get('answer')
+    user.isChecked = True
     db.session.commit()
 
     return jsonify({"message": "답변 성공!!"}), 200

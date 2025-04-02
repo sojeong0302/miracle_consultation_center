@@ -58,7 +58,7 @@ const WriteList = () => {
                         <div className='item'>{item.date}</div>
                         <div className='item-content'>{item.content}</div>
                         <div className='item'>
-                            <CustomCheckbox checked={item.isChecked === 1} />
+                            <CustomCheckbox checked={item.isChecked == 1} />
                         </div>
                     </div>
                 ))}

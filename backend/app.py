@@ -94,7 +94,8 @@ def view(code):
     if item:
         return jsonify({
             'content': item.content,
-            'answer': item.answer
+            'answer': item.answer,
+            'isChecked':item.isChecked
         })
     else:
         return jsonify({'error': 'Code not found'}), 404

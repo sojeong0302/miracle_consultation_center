@@ -4,26 +4,28 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const View = ({ mockData, setMockData }) => {
+const View = () => {
     const [answer, setAnswer] = useState('');
+    const [content, setContent] = useState('');
+    const [isChecked, setIsChecked] = useState(false);
     const navigate = useNavigate();
     const params = useParams();
     const goBack = () => {
         navigate(-1);
     };
     const { code } = params;
-    const selectedItem = mockData?.find((mockData) => mockData.code === code);
+    // const selectedItem = mockData?.find((mockData) => mockData.code === code);
 
     const handleSendClick = () => {
-        if (selectedItem?.isChecked === 0) {
-            setMockData((prevData) => {
-                const updatedData = prevData.map((item) =>
-                    item.code === selectedItem.code ? { ...item, answer: answer, isChecked: 1 } : item
-                );
-                console.log(updatedData);
-                return updatedData;
-            });
-        }
+        // if (selectedItem?.isChecked === 0) {
+        //     setMockData((prevData) => {
+        //         const updatedData = prevData.map((item) =>
+        //             item.code === selectedItem.code ? { ...item, answer: answer, isChecked: 1 } : item
+        //         );
+        //         console.log(updatedData);
+        //         return updatedData;
+        //     });
+        // }
     };
 
     useEffect(() => {
@@ -32,6 +34,9 @@ const View = ({ mockData, setMockData }) => {
             .get(apiUrl)
             .then((response) => {
                 console.log(response.data);
+                setAnswer(response.data.answer);
+                setContent(response.data.content);
+                setIsChecked(response.data.isChecked);
             })
             .catch((error) => {
                 console.error(error);
@@ -41,13 +46,13 @@ const View = ({ mockData, setMockData }) => {
     return (
         <div className='view-container'>
             <div className='view-textare'>
-                <textarea className='originalText' value={selectedItem?.content} readOnly></textarea>
+                <textarea className='originalText' value={content} readOnly></textarea>
                 <textarea
                     className='myAnswer'
-                    value={selectedItem?.isChecked === 0 ? answer : selectedItem?.answer}
-                    readOnly={selectedItem?.isChecked === 1}
+                    value={answer}
+                    readOnly={isChecked === true}
                     onChange={(e) => {
-                        if (!selectedItem?.isChecked) {
+                        if (!isChecked) {
                             setAnswer(e.target.value);
                         }
                     }}
@@ -55,7 +60,7 @@ const View = ({ mockData, setMockData }) => {
             </div>
             <div className='view-button'>
                 <Button text={'취소'} onClick={goBack} />
-                {selectedItem?.isChecked === 0 && <Button text={'보내기'} onClick={handleSendClick} />}
+                {isChecked === false && <Button text={'보내기'} onClick={handleSendClick} />}
             </div>
         </div>
     );

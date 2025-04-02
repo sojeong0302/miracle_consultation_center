@@ -14,6 +14,8 @@ const Home = ({ mockData }) => {
     const [selectedItem, setSelectedItem] = useState(null);
     const [adminName, setAdminName] = useState('');
     const [password, setPassword] = useState('');
+    const [code, setCode] = useState('');
+    const [foundItem, setFoundItem] = useState(null);
 
     const navigate = useNavigate();
 
@@ -83,10 +85,14 @@ const Home = ({ mockData }) => {
         </div>
     );
 
+    const handleCodeChange = (e) => {
+        setCode(e.target.value);
+    };
+
     const AnserModalElement = (
         <div>
             <label>Code </label>
-            <input className='home-inputNumber' id='codeInput' />
+            <input className='home-inputNumber' id='codeInput' value={code} onChange={handleCodeChange} />
         </div>
     );
 
@@ -97,20 +103,29 @@ const Home = ({ mockData }) => {
         </div>
     );
 
-    const handleAnswerButtonClick = () => {
-        const codeInput = document.getElementById('codeInput');
-        const code = codeInput.value;
-        const foundItem = mockData.find((item) => item.code === code);
+    const handleAnswerButtonClick = async () => {
+        if (!code) {
+            alert('코드를 입력해주세요.');
+            return;
+        }
 
-        if (foundItem) {
-            setSelectedItem(foundItem);
-            if (foundItem.answer !== null) {
-                navigate(`/answer/${code}`);
+        try {
+            const response = await axios.get(`http://127.0.0.1:5000/writeList`);
+            const item = response.data.find((item) => item.code === code);
+            setFoundItem(item);
+
+            console.log(response.data);
+            if (item) {
+                if (item.answer != null) {
+                    navigate(`/answer/${code}`);
+                } else {
+                    openNoAnswerModal();
+                }
             } else {
-                openNoAnswerModal();
+                alert('코드를 다시 확인해주세요!');
             }
-        } else {
-            alert('해당 코드에 대한 정보가 없습니다.');
+        } catch (error) {
+            console.error(error);
         }
     };
 
@@ -118,7 +133,7 @@ const Home = ({ mockData }) => {
         <div className='home-noticeModal'>
             <div className='home-notice'>
                 <h2>
-                    [{selectedItem?.nickName}]님의 사연에 대한 답장을 작성중입니다.
+                    [{foundItem?.nickName}]님의 사연에 대한 답장을 작성중입니다.
                     <br />
                     조금만 기다려 주세요.
                     <br />
@@ -128,7 +143,7 @@ const Home = ({ mockData }) => {
             <div>
                 <h3 className='home-from'>from. 기적의 상담소</h3>
                 <div className='home-noticButton'>
-                    <Button text={'확인'} route='/' />
+                    <Button text={'확인'} onClick={closeNoAnswerModal} />
                 </div>
             </div>
         </div>

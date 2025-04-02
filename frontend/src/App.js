@@ -59,8 +59,8 @@ function App() {
                     <Route path='/' element={<Home mockData={mockData} />} />
                     {/* <Route path='/write' element={<Write onCreateNewData={handleCreateNewData} />} /> */}
                     <Route path='/write' element={<Write />} />
-                    <Route path='/answer/:code' element={<Answer mockData={mockData} />} />
-                    <Route path='/view/:code' element={<View mockData={mockData} setMockData={setMockData} />} />
+                    <Route path='/answer/:code' element={<Answer />} />
+                    <Route path='/view/:code' element={<View />} />
 
                     {/* <Route path='/writeList' element={<WriteList mockData={mockData} />} /> */}
                     <Route path='/writeList' element={<WriteList />} />

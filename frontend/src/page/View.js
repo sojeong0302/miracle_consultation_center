@@ -14,18 +14,17 @@ const View = () => {
         navigate(-1);
     };
     const { code } = params;
-    // const selectedItem = mockData?.find((mockData) => mockData.code === code);
 
-    const handleSendClick = () => {
-        // if (selectedItem?.isChecked === 0) {
-        //     setMockData((prevData) => {
-        //         const updatedData = prevData.map((item) =>
-        //             item.code === selectedItem.code ? { ...item, answer: answer, isChecked: 1 } : item
-        //         );
-        //         console.log(updatedData);
-        //         return updatedData;
-        //     });
-        // }
+    const handleSendClick = async () => {
+        try {
+            await axios.patch('http://127.0.0.1:5000/answer', {
+                code: code,
+                answer: answer,
+            });
+            setIsChecked(true);
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     useEffect(() => {

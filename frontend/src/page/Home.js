@@ -11,7 +11,6 @@ const Home = () => {
     const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
     const [isAnswerModalOpen, setIsAnswerModalOpen] = useState(false);
     const [isNoAnswerModalOpen, setIsNoAnswerModalOpen] = useState(false);
-    const [selectedItem, setSelectedItem] = useState(null);
     const [adminName, setAdminName] = useState('');
     const [password, setPassword] = useState('');
     const [code, setCode] = useState('');
@@ -89,7 +88,7 @@ const Home = () => {
         setCode(e.target.value);
     };
 
-    const AnserModalElement = (
+    const AnswerModalElement = (
         <div>
             <label>Code </label>
             <input className='home-inputNumber' id='codeInput' value={code} onChange={handleCodeChange} />
@@ -170,7 +169,7 @@ const Home = () => {
             {isAnswerModalOpen && (
                 <InputModal
                     onClose={closeLoginModal}
-                    inputElement={AnserModalElement}
+                    inputElement={AnswerModalElement}
                     text={'답변을 찾으러 오셨나요?'}
                     buttonElement={AnswerModalButton}
                 />

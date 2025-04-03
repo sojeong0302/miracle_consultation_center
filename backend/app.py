@@ -4,6 +4,9 @@ from flask_bcrypt import Bcrypt
 from flask_sqlalchemy import SQLAlchemy
 from datetime import date
 from flask_migrate import Migrate
+import random
+import string
+
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
@@ -30,6 +33,17 @@ class User(db.Model):
 
 with app.app_context():
     db.create_all() 
+
+#랜덤 code 생성
+def generate_unique_code():
+    while True:
+        new_code = ''.join(random.choices(string.ascii_letters + string.digits, k=12))
+
+        existing = User.query.filter_by(code=new_code).first()
+
+        if not existing:
+            return new_code
+
 
 @app.route('/register',methods=['POST'])
 def register():
@@ -64,6 +78,7 @@ def register():
 def login():
     try:
         data=request.json
+
         if not data:
             return jsonify({"error": "필수 데이터를 포함해주세요."}), 400
 
@@ -84,27 +99,27 @@ def write():
         data=request.json
 
         if not data:
-            return jsonify({"error": "잘못된 요청입니다."}), 400
+            return jsonify({"error": "필수 데이터를 포함해주세요."}), 400
         
-    except Exception as e:
-        db.session.rollback()
-        return jsonify({"message": e}), 500 
-    
+        new_code = generate_unique_code()
 
-
-    new_user = User(
+        new_user = User(
         nickName=data['nickName'],
         date=date.today(),
         content=data['content'],
         isChecked=data.get('isChecked', False),
-        code=data['code'],
+        code=new_code,
         answer=data.get('answer', None)
-    )
+        )
 
-    db.session.add(new_user)  # DB에 추가
-    db.session.commit()  # 변경사항 저장
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({"message": e}), 500 
+    
+    db.session.add(new_user) 
+    db.session.commit()
 
-    return jsonify({"message": "작성 완료!", "user_id": new_user.id}), 201
+    return jsonify({"message": "작성 완료!", "id": new_user.id, "code":new_code}), 201
         
 @app.route('/writeList', methods=['GET'])
 def writeList():

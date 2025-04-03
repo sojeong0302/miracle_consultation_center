@@ -193,12 +193,14 @@ def view(URLcode):
         if not data:
             return jsonify({"error": "해당 code에 대한 정보가 없습니다."}), 404
 
-        return jsonify(
-            {
-                "content": data.content,
-                "answer": data.answer,
-                "isChecked": data.isChecked,
-            },
+        return (
+            jsonify(
+                {
+                    "content": data.content,
+                    "answer": data.answer,
+                    "isChecked": data.isChecked,
+                }
+            ),
             200,
         )
 
@@ -238,17 +240,19 @@ def answer(URLcode):
         return jsonify({"message": e}), 500
 
 
-@app.route("/getAnswerByCode", methods=["GET"])
-def getAnswerByCode():
-    code = request.args.get("code")
-    if not code:
-        return jsonify({"error": "code parameter is required"}), 400
-    user = User.query.filter_by(code=code).first()
-    if user:
-        user_data = {"nickName": user.nickName, "answer": user.answer}
-        return jsonify(user_data), 200
-    else:
-        return jsonify({"error": "No user found with this code"}), 404
+@app.route("/getAnswerByCode/<URLcode>", methods=["GET"])
+def getAnswerByCode(URLcode):
+    try:
+        item = User.query.filter_by(code=URLcode).first()
+
+        if not item:
+            return jsonify({"error": "해당 code에 대한 정보가 없습니다."}), 404
+
+        return jsonify({"nickName": item.nickName, "answer": item.answer}), 200
+
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({"message": e}), 500
 
 
 if __name__ == "__main__":

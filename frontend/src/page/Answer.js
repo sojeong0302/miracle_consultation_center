@@ -11,7 +11,7 @@ const Answer = () => {
     const [answer, setAnswer] = useState('');
 
     useEffect(() => {
-        const apiUrl = `http://127.0.0.1:5000/getAnswerByCode?code=${code}`;
+        const apiUrl = `http://127.0.0.1:5000/getAnswerByCode/${code}`;
         axios
             .get(apiUrl)
             .then((response) => {

@@ -157,20 +157,32 @@ def write():
 
 @app.route("/writeList", methods=["GET"])
 def writeList():
-    users = User.query.order_by(User.isChecked.asc()).all()  # 모든 데이터 조회
-    users_data = [
-        {
-            "id": user.id,
-            "nickName": user.nickName,
-            "date": user.date.strftime("%Y-%m-%d"),  # 날짜 포맷 변경
-            "content": user.content,
-            "isChecked": user.isChecked,
-            "code": user.code,
-            "answer": user.answer,
-        }
-        for user in users
-    ]
-    return jsonify(users_data), 200  # JSON 형식으로 반환
+    try:
+        users = User.query.order_by(User.isChecked.asc()).all()
+
+        if not users:
+            return jsonify({"message": "조회된 데이터가 없습니다."}), 404
+
+        users_data = [
+            {
+                "id": user.id,
+                "nickName": user.nickName,
+                "date": user.date.strftime("%Y-%m-%d"),
+                "content": user.content,
+                "isChecked": user.isChecked,
+                "code": user.code,
+                "answer": user.answer,
+            }
+            for user in users
+        ]
+        return (
+            jsonify(users_data),
+            200,
+        )
+
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({"message": e}), 500
 
 
 @app.route("/view/<code>", methods=["GET"])

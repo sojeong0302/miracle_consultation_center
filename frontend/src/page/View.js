@@ -26,7 +26,7 @@ const View = () => {
                 setIsChecked(response.data.isChecked);
             })
             .catch((error) => {
-                console.error(error);
+                console.error(error.response.data);
             });
     }, []);
 

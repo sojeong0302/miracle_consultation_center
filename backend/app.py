@@ -158,9 +158,9 @@ def write():
 @app.route("/writeList", methods=["GET"])
 def writeList():
     try:
-        users = User.query.order_by(User.isChecked.asc()).all()
+        data = User.query.order_by(User.isChecked.asc()).all()
 
-        if not users:
+        if not data:
             return jsonify({"message": "조회된 데이터가 없습니다."}), 404
 
         users_data = [
@@ -173,7 +173,7 @@ def writeList():
                 "code": user.code,
                 "answer": user.answer,
             }
-            for user in users
+            for user in data
         ]
         return (
             jsonify(users_data),
@@ -187,18 +187,24 @@ def writeList():
 
 @app.route("/view/<code>", methods=["GET"])
 def view(code):
-    item = User.query.filter_by(code=code).first()  # code에 맞는 첫 번째 항목 찾기
+    try:
+        data = User.query.filter_by(code=code).first()
 
-    if item:
+        if not data:
+            return jsonify({"error": "해당 code에 대한 정보가 없습니다."}), 404
+
         return jsonify(
             {
-                "content": item.content,
-                "answer": item.answer,
-                "isChecked": item.isChecked,
-            }
+                "content": data.content,
+                "answer": data.answer,
+                "isChecked": data.isChecked,
+            },
+            200,
         )
-    else:
-        return jsonify({"error": "Code not found"}), 404
+
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({"message": e}), 500
 
 
 @app.route("/answer/<code>", methods=["PATCH"])

@@ -23,6 +23,19 @@ const Write = () => {
     };
 
     const worrySend = async () => {
+        if (!nickName.trim()) {
+            alert('닉네임을 입력해주세요.');
+            return;
+        }
+        if (nickName.length > 10) {
+            alert('닉네임은 10글자 이하로 작성해주세요');
+            return;
+        }
+        if (!content.trim()) {
+            alert('상담 내용을 입력해주세요.');
+            return;
+        }
+
         try {
             const response = await axios.post('http://127.0.0.1:5000/write', {
                 nickName: nickName,

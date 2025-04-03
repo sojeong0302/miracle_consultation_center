@@ -53,31 +53,44 @@ def register():
         new_admin = Admin(adminName=data['adminName'], password=hashed_pw)
         db.session.add(new_admin)
         db.session.commit()
-        
+
         return jsonify({"message": "관리자가 추가되었습니다."}), 201
     
     except Exception as e:
         db.session.rollback()
         return jsonify({"message": e}), 500
 
-
-
-
 @app.route('/login',methods=['POST'])
 def login():
-    data=request.json
-    admin=Admin.query.filter_by(adminName=data['adminName']).first()
-    if admin and bcrypt.check_password_hash(admin.password, data['password']):
-        return jsonify({"message": "로그인 성공!!!"})
-    else:
-         return jsonify({"message": "로그인 실패 ㅜㅜ"}), 401
+    try:
+        data=request.json
+        if not data:
+            return jsonify({"error": "필수 데이터를 포함해주세요."}), 400
+
+        admin=Admin.query.filter_by(adminName=data['adminName']).first()
+
+        if not admin or not bcrypt.check_password_hash(admin.password, data['password']):
+            return jsonify({"message": "아이디 비밀번호를 확인해주세요."}), 400
+        
+        return jsonify({"message": "로그인 성공했습니다."}), 200
+    
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({"message": e}), 500
     
 @app.route('/write',methods=['POST'])
 def write():
-    data=request.json
+    try:
+        data=request.json
 
-    if not data:
-        return jsonify({"error": "잘못된 요청입니다."}), 400
+        if not data:
+            return jsonify({"error": "잘못된 요청입니다."}), 400
+        
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({"message": e}), 500 
+    
+
 
     new_user = User(
         nickName=data['nickName'],

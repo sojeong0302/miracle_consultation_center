@@ -71,7 +71,7 @@
     border-radius: 10px;
     border: 1px solid #000000;
     padding: 2%;
-    width: 100px;
+    width: 120px;
     opacity: 0.5;
     background-image: url('../img/Duplication.png');
     background-size: 2cap;
@@ -98,5 +98,5 @@
 }
 
 .noticeButton {
-    margin-left: 53%;
+    margin-left: 50%;
 }

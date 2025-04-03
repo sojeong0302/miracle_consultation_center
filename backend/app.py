@@ -185,10 +185,10 @@ def writeList():
         return jsonify({"message": e}), 500
 
 
-@app.route("/view/<code>", methods=["GET"])
-def view(code):
+@app.route("/view/<URLcode>", methods=["GET"])
+def view(URLcode):
     try:
-        data = User.query.filter_by(code=code).first()
+        data = User.query.filter_by(code=URLcode).first()
 
         if not data:
             return jsonify({"error": "해당 code에 대한 정보가 없습니다."}), 404
@@ -207,23 +207,35 @@ def view(code):
         return jsonify({"message": e}), 500
 
 
-@app.route("/answer/<code>", methods=["PATCH"])
-def answer(code):
-    data = request.json
-    answer = data.get("answer")  # 클라이언트에서 전달받은 답변
+@app.route("/answer/<URLcode>", methods=["PATCH"])
+def answer(URLcode):
+    try:
+        data = request.json
 
-    # code로 해당 사용자를 찾기
-    item = User.query.filter_by(code=code).first()
+        # URL에서 받은 code로 해당 사용자를 찾기
+        item = User.query.filter_by(code=URLcode).first()
 
-    if not item:  # 해당 사용자가 없으면 에러 반환
-        return jsonify({"error": "User not found"}), 404
+        # 해당 code가 없으면 에러 반환
+        if not item:
+            return jsonify({"error": "해당 code에 대한 정보가 없습니다."}), 404
 
-    # 답변 업데이트
-    item.answer = answer
-    item.isChecked = True
-    db.session.commit()
+        answer = data.get("answer")
 
-    return jsonify({"message": "답변 성공!!"}), 200
+        if "answer" not in data:
+            return jsonify({"error": "필수 데이터를 포함해주세요."})
+
+        if not answer.strip():
+            return jsonify({"error": "답변을 입력해주세요."})
+
+        item.answer = answer
+        item.isChecked = True
+        db.session.commit()
+
+        return jsonify({"message": "답변을 성공했습니다."}), 200
+
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({"message": e}), 500
 
 
 @app.route("/getAnswerByCode", methods=["GET"])

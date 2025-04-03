@@ -7,7 +7,7 @@ import NoticeModal from '../component/NoticeModal.js';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-const Home = ({ mockData }) => {
+const Home = () => {
     const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
     const [isAnswerModalOpen, setIsAnswerModalOpen] = useState(false);
     const [isNoAnswerModalOpen, setIsNoAnswerModalOpen] = useState(false);

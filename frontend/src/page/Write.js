@@ -5,7 +5,7 @@ import NoticeModal from '../component/NoticeModal.js';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-const Write = ({ onCreateNewData }) => {
+const Write = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [nickName, setNickName] = useState('');
     const [content, setContent] = useState('');

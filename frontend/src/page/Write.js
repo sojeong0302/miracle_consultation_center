@@ -5,7 +5,7 @@ import NoticeModal from '../component/NoticeModal.js';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-const Write = ({ onCreateNewData }) => {
+const Write = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [nickName, setNickName] = useState('');
     const [content, setContent] = useState('');
@@ -22,54 +22,27 @@ const Write = ({ onCreateNewData }) => {
         }
     };
 
-    const openModal = () => {
-        // const generateCode = () => {
-        //     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-        //     let code = '';
-        //     for (let i = 0; i < 10; i++) {
-        //         const randomIndex = Math.floor(Math.random() * characters.length);
-        //         code += characters.charAt(randomIndex);
-        //     }
-        //     return code;
-        // };
-        // const newCode = generateCode();
-        // setGeneratedCode(newCode);
-        // const newData = {
-        //     id: Math.floor(Math.random() * 1000) + 1,
-        //     nickName: nickName,
-        //     date: new Date().toISOString().slice(0, 10),
-        //     content: content,
-        //     isChecked: 0,
-        //     code: newCode,
-        //     answer: null,
-        // };
-        // onCreateNewData(newData);
-        // setIsModalOpen(true);
-    };
-
     const worrySend = async () => {
-        const generateCode = () => {
-            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-            let code = '';
-
-            for (let i = 0; i < 10; i++) {
-                const randomIndex = Math.floor(Math.random() * characters.length);
-                code += characters.charAt(randomIndex);
-            }
-            return code;
-        };
-
-        const newCode = generateCode();
-
-        setGeneratedCode(newCode);
+        if (!nickName.trim()) {
+            alert('닉네임을 입력해주세요.');
+            return;
+        }
+        if (nickName.length > 10) {
+            alert('닉네임은 10글자 이하로 작성해주세요');
+            return;
+        }
+        if (!content.trim()) {
+            alert('상담 내용을 입력해주세요.');
+            return;
+        }
 
         try {
             const response = await axios.post('http://127.0.0.1:5000/write', {
                 nickName: nickName,
                 content: content,
-                code: newCode,
             });
             console.log(response.data);
+            setGeneratedCode(response.data.code);
             setIsModalOpen(true);
         } catch (error) {
             console.log(error);

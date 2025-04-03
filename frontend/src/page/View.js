@@ -26,13 +26,13 @@ const View = () => {
                 setIsChecked(response.data.isChecked);
             })
             .catch((error) => {
-                console.error(error);
+                console.error(error.response.data);
             });
     }, []);
 
     const handleSendClick = async () => {
         try {
-            await axios.patch('http://127.0.0.1:5000/answer', {
+            await axios.patch(`http://127.0.0.1:5000/answer/${code}`, {
                 code: code,
                 answer: answer,
             });

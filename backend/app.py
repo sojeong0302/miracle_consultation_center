@@ -43,6 +43,11 @@ with app.app_context():
     db.create_all()
 
 
+@app.route("/")
+def home():
+    return "🎉 Flask 앱이 정상적으로 배포되었습니다!"
+
+
 # JWT 생성 함수 추가
 def generate_token(admin_id, admin_name):
     payload = {

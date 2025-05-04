@@ -9,6 +9,7 @@ import string
 import jwt
 import datetime
 from functools import wraps
+import os
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
@@ -298,4 +299,5 @@ def getAnswerByCode(URLcode):
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)

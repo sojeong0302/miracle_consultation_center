@@ -49,6 +49,8 @@ const Home = () => {
                 adminName: adminName,
                 password: password,
             });
+            const token = response.data.token;
+            localStorage.setItem('token', token);
             console.log(response.data);
             navigate('/writeList');
         } catch (error) {

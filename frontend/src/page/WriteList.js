@@ -32,16 +32,30 @@ const WriteList = () => {
 
     useEffect(() => {
         const apiUrl = 'http://127.0.0.1:5000/writeList';
+        const token = localStorage.getItem('token');
+
+        if (!token) {
+            navigate('/');
+            return;
+        }
+
         axios
-            .get(apiUrl)
+            .get(apiUrl, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            })
             .then((response) => {
-                console.log(response.data);
                 setDataList(response.data);
                 const notCheckedCount = response.data.filter((item) => !item.isChecked).length;
                 setNotAnswerLength(notCheckedCount);
             })
             .catch((error) => {
                 console.error(error);
+                if (error.response?.status === 401) {
+                    localStorage.removeItem('token');
+                    navigate('/');
+                }
             });
     }, []);
 

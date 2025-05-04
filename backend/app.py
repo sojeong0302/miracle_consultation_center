@@ -6,13 +6,17 @@ from datetime import date
 from flask_migrate import Migrate
 import random
 import string
-
+import jwt
+import datetime
+from functools import wraps
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
 bcrypt = Bcrypt(app)
 
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///mydatabase.db"
+app.config["SECRET_KEY"] = "q1w2e3r4t5y6!@#zxcvbnmasdf1234"
+
 
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
@@ -36,6 +40,38 @@ class User(db.Model):
 
 with app.app_context():
     db.create_all()
+
+
+# JWT 생성 함수 추가
+def generate_token(admin_id, admin_name):
+    payload = {
+        "id": admin_id,
+        "adminName": admin_name,
+        "exp": datetime.datetime.utcnow() + datetime.timedelta(seconds=30),
+    }
+    token = jwt.encode(payload, app.config["SECRET_KEY"], algorithm="HS256")
+    return token
+
+
+def token_required(f):
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        token = None
+        if "Authorization" in request.headers:
+            token = request.headers["Authorization"].split(" ")[1]
+
+        if not token:
+            return jsonify({"error": "토큰이 없습니다."}), 401
+
+        try:
+            data = jwt.decode(token, app.config["SECRET_KEY"], algorithms=["HS256"])
+            current_admin = Admin.query.filter_by(id=data["id"]).first()
+        except:
+            return jsonify({"error": "토큰이 유효하지 않습니다."}), 401
+
+        return f(current_admin, *args, **kwargs)
+
+    return decorated
 
 
 # 랜덤 code 생성
@@ -103,7 +139,15 @@ def login():
         ):
             return jsonify({"message": "아이디 비밀번호를 확인해주세요."}), 400
 
-        return jsonify({"message": "로그인 성공했습니다."}), 200
+        return (
+            jsonify(
+                {
+                    "message": "로그인 성공했습니다.",
+                    "token": generate_token(admin.id, admin.adminName),
+                }
+            ),
+            200,
+        )
 
     except Exception as e:
         db.session.rollback()
@@ -156,7 +200,8 @@ def write():
 
 
 @app.route("/writeList", methods=["GET"])
-def writeList():
+@token_required
+def writeList(current_admin):
     try:
         data = User.query.order_by(User.isChecked.asc()).all()
 
@@ -175,14 +220,11 @@ def writeList():
             }
             for user in data
         ]
-        return (
-            jsonify(users_data),
-            200,
-        )
+        return jsonify(users_data), 200
 
     except Exception as e:
         db.session.rollback()
-        return jsonify({"message": e}), 500
+        return jsonify({"message": str(e)}), 500
 
 
 @app.route("/view/<URLcode>", methods=["GET"])

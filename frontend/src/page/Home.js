@@ -1,6 +1,6 @@
 import './Home.css';
 import Button from '../component/Button.js';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import login from '../img/login.png';
 import InputModal from '../component/InputModal.js';
 import NoticeModal from '../component/NoticeModal.js';
@@ -43,12 +43,26 @@ const Home = () => {
         setIsNoAnswerModalOpen(false);
     };
 
+    useEffect(() => {
+        setInterval(() => {
+            axios.get('https://miracle-consultation-center.onrender.com/ping');
+        }, 60 * 1000); // 5분마다
+    }, []);
+
     const adminLogin = async () => {
         try {
-            const response = await axios.post('http://127.0.0.1:5000/login', {
-                adminName: adminName,
-                password: password,
-            });
+            const response = await axios.post(
+                'https://miracle-consultation-center.onrender.com/login',
+                {
+                    adminName: adminName,
+                    password: password,
+                },
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                }
+            );
             const token = response.data.token;
             localStorage.setItem('token', token);
             console.log(response.data);

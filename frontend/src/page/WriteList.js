@@ -31,7 +31,15 @@ const WriteList = () => {
     };
 
     useEffect(() => {
-        const apiUrl = 'http://127.0.0.1:5000/writeList';
+        const interval = setInterval(() => {
+            axios.get('https://miracle-consultation-center.onrender.com/ping');
+        }, 60 * 1000);
+
+        return () => clearInterval(interval);
+    }, []);
+
+    useEffect(() => {
+        const apiUrl = 'https://miracle-consultation-center.onrender.com/writeList';
         const token = localStorage.getItem('token');
 
         if (!token) {

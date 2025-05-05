@@ -44,9 +44,11 @@ const Home = () => {
     };
 
     useEffect(() => {
-        setInterval(() => {
+        const interval = setInterval(() => {
             axios.get('https://miracle-consultation-center.onrender.com/ping');
-        }, 60 * 1000); // 5분마다
+        }, 60 * 1000);
+
+        return () => clearInterval(interval);
     }, []);
 
     const adminLogin = async () => {

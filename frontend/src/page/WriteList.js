@@ -31,7 +31,7 @@ const WriteList = () => {
     };
 
     useEffect(() => {
-        const apiUrl = "https://miracle-consultation-center.onrender.com/writeList";
+        const apiUrl = "http://127.0.0.1:5000/writeList";
         const token = localStorage.getItem("token");
 
         if (!token) {

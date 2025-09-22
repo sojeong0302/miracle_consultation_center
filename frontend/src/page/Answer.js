@@ -1,17 +1,17 @@
-import './Answer.css';
-import Button from '../component/Button.js';
-import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+import "./Answer.css";
+import Button from "../component/Button.js";
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const Answer = () => {
     const params = useParams();
     const { code } = params;
-    const [nickName, setNickName] = useState('');
-    const [answer, setAnswer] = useState('');
+    const [nickName, setNickName] = useState("");
+    const [answer, setAnswer] = useState("");
 
     useEffect(() => {
-        const apiUrl = `https://miracle-consultation-center.onrender.com/getAnswerByCode/${code}`;
+        const apiUrl = `http://127.0.0.1:5000/getAnswerByCode/${code}`;
         axios
             .get(apiUrl)
             .then((response) => {
@@ -25,11 +25,11 @@ const Answer = () => {
     }, []);
 
     return (
-        <div className='answer-container' readOnly>
-            <input className='answer-input' readOnly value={nickName + '님에게'} />
-            <textarea className='answer-textarea' readOnly value={answer} />
-            <div className='answer-button'>
-                <Button text={'취소'} route='/' />
+        <div className="answer-container" readOnly>
+            <input className="answer-input" readOnly value={nickName + "님에게"} />
+            <textarea className="answer-textarea" readOnly value={answer} />
+            <div className="answer-button">
+                <Button text={"취소"} route="/" />
             </div>
         </div>
     );

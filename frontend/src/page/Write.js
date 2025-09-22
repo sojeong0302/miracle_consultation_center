@@ -37,7 +37,7 @@ const Write = () => {
         }
 
         try {
-            const response = await axios.post('http://127.0.0.1:5000/write', {
+            const response = await axios.post('https://miracle-consultation-center.onrender.com/write', {
                 nickName: nickName,
                 content: content,
             });

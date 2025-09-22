@@ -43,14 +43,6 @@ const Home = () => {
         setIsNoAnswerModalOpen(false);
     };
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-            axios.get('https://miracle-consultation-center.onrender.com/ping');
-        }, 60 * 1000);
-
-        return () => clearInterval(interval);
-    }, []);
-
     const adminLogin = async () => {
         try {
             const response = await axios.post(
@@ -127,7 +119,7 @@ const Home = () => {
         }
 
         try {
-            const response = await axios.get(`http://127.0.0.1:5000/writeList`);
+            const response = await axios.get('https://miracle-consultation-center.onrender.com/writeList');
             const item = response.data.find((item) => item.code === code);
             setFoundItem(item);
 

@@ -16,7 +16,7 @@ const View = () => {
     const { code } = params;
 
     useEffect(() => {
-        const apiUrl = `http://127.0.0.1:5000/view/${code}`;
+        const apiUrl = `https://miracle-consultation-center.onrender.com/view/${code}`;
         axios
             .get(apiUrl)
             .then((response) => {
@@ -32,7 +32,7 @@ const View = () => {
 
     const handleSendClick = async () => {
         try {
-            await axios.patch(`http://127.0.0.1:5000/answer/${code}`, {
+            await axios.patch(`https://miracle-consultation-center.onrender.com/${code}`, {
                 code: code,
                 answer: answer,
             });

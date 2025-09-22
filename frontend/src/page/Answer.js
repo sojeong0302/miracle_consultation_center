@@ -11,7 +11,7 @@ const Answer = () => {
     const [answer, setAnswer] = useState('');
 
     useEffect(() => {
-        const apiUrl = `http://127.0.0.1:5000/getAnswerByCode/${code}`;
+        const apiUrl = `https://miracle-consultation-center.onrender.com/getAnswerByCode/${code}`;
         axios
             .get(apiUrl)
             .then((response) => {

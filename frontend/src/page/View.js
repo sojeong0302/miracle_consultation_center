@@ -16,7 +16,7 @@ const View = () => {
     const { code } = params;
 
     useEffect(() => {
-        const apiUrl = `http://127.0.0.1:5000/view/${code}`;
+        const apiUrl = `http://3.38.176.127/view/${code}`;
         axios
             .get(apiUrl)
             .then((response) => {
@@ -34,7 +34,7 @@ const View = () => {
         try {
             const token = localStorage.getItem("token");
             await axios.patch(
-                `http://127.0.0.1:5000/answer/${code}`,
+                `http://3.38.176.127/answer/${code}`,
                 { answer },
                 {
                     headers: {

@@ -45,7 +45,7 @@ const Home = () => {
 
     const adminLogin = async () => {
         try {
-            const response = await axios.post("http://127.0.0.1:5000/login", {
+            const response = await axios.post("http://3.38.176.127/login", {
                 adminName: adminName,
                 password: password,
             });
@@ -111,7 +111,7 @@ const Home = () => {
         }
 
         try {
-            const response = await axios.get("http://127.0.0.1:5000/writeList");
+            const response = await axios.get("http://3.38.176.127/writeList");
             const item = response.data.find((item) => item.code === code);
             setFoundItem(item);
 
